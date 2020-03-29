@@ -1,21 +1,9 @@
 <style>
     body {
         background-image: url();
-        background: url("/images/login.jpg");
+        background: url("/images/flood.jpg");
         background-size: cover;
-        background-position-y: bottom;
-
-        a {
-            color: seagreen;
-        }
-    }
-
-    a {
-        color: #28a745;
-    }
-
-    a:hover {
-        color: seagreen;
+        background-position-y: top;
     }
 </style>
 <div class="login-container">
@@ -38,10 +26,11 @@
             <label for="password">Password:</label>
             <input type="password" class="form-control" name="password" id="password" required>
         </div>
-        <button type="submit" class="btn btn-success">Login</button>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <p>
+            Don't have an account? <a href="/register">Register</a>
+        </p>
     </form>
-    <p>
-        Don't have an account? <a href="/register">Register</a>
-    </p>
+
 
 </div>
