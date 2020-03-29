@@ -7,10 +7,6 @@ const db = require("./models");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// const flash = require("express-flash");
-// const session = require("express-session");
-// const methodOverride = require("method-override");
-
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
