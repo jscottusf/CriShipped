@@ -19,8 +19,7 @@ module.exports = function(app) {
   app.use(passport.session());
   app.use(methodOverride("_method"));
 
-  //"mongodb+srv://jscottusf:IgPj2uoehQiVellZ@cluster0-giujn.mongodb.net/test?retryWrites=true&w=majority"
-  //'mongodb:/ / localhost'
+  //'mongodb://localhost'
   MongoClient.connect(
     process.env.DATABASE_URL,
     { useUnifiedTopology: true },
