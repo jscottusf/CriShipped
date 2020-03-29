@@ -50,10 +50,11 @@ module.exports = function(app) {
     users.insertOne(payload, err => {
       if (err) {
         req.flash("error", "User account already exists");
+        res.redirect("/register");
       } else {
         req.flash("success", "User account registered successfully");
+        res.redirect("/login");
       }
-      res.redirect("/login");
     });
   });
 
