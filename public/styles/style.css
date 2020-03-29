@@ -1,0 +1,51 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.jumbotron {
+  background: url("/images/empty.jpg");
+  background-image: brightness(50%) saturate(140%);
+  color: azure;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+  padding: 200px;
+  padding-top: 150px;
+}
+
+/* #jumbotron {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  padding: 20px;
+} */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+.register-container {
+  padding: 50px;
+}
+
+.login-container {
+  padding: 50px;
+  color: azure;
+}
+
+#login,
+.alert {
+  width: 400px;
+}

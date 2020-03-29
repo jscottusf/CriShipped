@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" id="jumbotron">
+        <h1 class="display-4">CriShipped</h1>
+        <p class="lead">A resource for finding and distributing limited supplies during emergencies.</p>
+        <p class="lead">
+            <a class="btn btn-success btn-lg" href="#" id="go">Sign up</a>
+        </p>
+    </div>
+</div>
+<div class="register-container">
+    <h1>Register</h1>
+    <form id="register" action="/register" method="POST">
+        <div class="form-group">
+            <label for="name">Username:</label>
+            <input type="text" class="form-control" name="name" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="username">Email:</label>
+            <input type="email" class="form-control" name="email" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" id="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p>
+        Already registered? <a href="/login">Login</a>
+    </p>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/register.js"></script>
