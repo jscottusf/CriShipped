@@ -61,8 +61,12 @@ module.exports = function(app) {
       return next();
     }
 
-    res.redirect("/login");
+    res.redirect("/register");
   }
+
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
 
   app.delete("/logout", (req, res) => {
     req.logOut();

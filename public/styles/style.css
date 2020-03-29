@@ -9,7 +9,7 @@ body {
   padding: 0;
 }
 
-.jumbotron {
+#register-jumbo {
   background: url("/images/empty.jpg");
   background-image: brightness(50%) saturate(140%);
   color: azure;
