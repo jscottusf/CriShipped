@@ -1,6 +1,10 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
+var paginate = require('express-paginate');
+var session = require('express-session');
+var path = require('path');
+
 
 var db = require("./models");
 
@@ -19,11 +23,16 @@ app.engine(
     defaultLayout: "main"
   })
 );
+// view engine setup
 app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+var routerRegister = require('./routers/router.register.js');
+
+// Register the Routers
+routerRegister(app);
 
 var syncOptions = { force: false };
 
