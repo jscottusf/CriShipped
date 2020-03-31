@@ -20,6 +20,7 @@ app.set("view engine", "handlebars");
 require("./config/mongo")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/profileRoutes")(app);
 
 var syncOptions = { force: false };
 
