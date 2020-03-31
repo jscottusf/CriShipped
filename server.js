@@ -26,10 +26,17 @@ app.engine(
 // view engine setup
 app.set("view engine", "handlebars");
 
+// 'views',
+//     'views/cataloguedm',
+//     'views/cataloguedm/partials',
+//     'views/cartdm',
+//     'views/cartdm/partials',
+//     'views/checkoutdm'
+
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-var routerRegister = require('./routers/router.register.js');
+var routerRegister = require('./routes/router.register');
 
 // Register the Routers
 routerRegister(app);
