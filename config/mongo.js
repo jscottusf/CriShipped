@@ -19,6 +19,7 @@ module.exports = function(app) {
   app.use(passport.session());
   app.use(methodOverride("_method"));
 
+  //
   //'mongodb://localhost'
   MongoClient.connect(
     process.env.DATABASE_URL,

@@ -4,18 +4,20 @@ const passport = require("passport");
 const ObjectID = require("mongodb").ObjectID;
 
 module.exports = function(app) {
-  app.get("/", checkAuthenticated, (req, res) => {
-    const users = req.app.locals.users;
-    const _id = ObjectID(req.session.passport.user);
-    console.log(_id);
+  app.get("/", checkAuthenticated, getUsername, getExamples, renderIndex);
 
-    users.findOne({ _id }, (err, results) => {
-      if (err || !results) {
-        res.render("index", { messages: { error: ["User not found"] } });
-      }
-      res.render("index", { name: results.name });
-    });
-  });
+  // (req, res) => {
+  //   const users = req.app.locals.users;
+  //   const _id = ObjectID(req.session.passport.user);
+  //   console.log(_id);
+
+  //   users.findOne({ _id }, (err, results) => {
+  //     if (err || !results) {
+  //       res.render("index", { messages: { error: ["User not found"] } });
+  //     }
+  //     res.render("index", { name: results.name });
+  //   });
+  // });
 
   app.get("/login", checkNotAuthenticated, (req, res) => {
     res.render("login");
@@ -49,7 +51,10 @@ module.exports = function(app) {
 
     users.insertOne(payload, err => {
       if (err) {
-        req.flash("error", "User account already exists");
+        req.flash(
+          "error",
+          "User account already exists with that email address"
+        );
         res.redirect("/register");
       } else {
         req.flash("success", "User account registered successfully");
@@ -57,14 +62,6 @@ module.exports = function(app) {
       }
     });
   });
-
-  function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
-      return next();
-    }
-
-    res.redirect("/register");
-  }
 
   app.get("*", function(req, res) {
     res.render("404");
@@ -75,10 +72,41 @@ module.exports = function(app) {
     res.redirect("/login");
   });
 
+  function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+
+    res.redirect("/register");
+  }
+
   function checkNotAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return res.redirect("/");
     }
     next();
+  }
+
+  function getUsername(req, res, next) {
+    const users = req.app.locals.users;
+    const _id = ObjectID(req.session.passport.user);
+    console.log(_id);
+    users.findOne({ _id }, (err, results) => {
+      req.name = results.name;
+      next();
+    });
+  }
+
+  function getExamples(req, res, next) {
+    db.Example.findAll({}).then(function(data) {
+      //console.log(dbExamples);
+      req.example = data;
+      next();
+    });
+  }
+
+  function renderIndex(req, res) {
+    //console.log(req.examples[0].text);
+    res.render("index", { name: req.name, examples: req.example });
   }
 };

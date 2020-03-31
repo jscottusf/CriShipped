@@ -55,3 +55,7 @@ a {
   border-radius: 15px;
   padding: 20px;
 }
+
+.card-body {
+  color: black;
+}
