@@ -12,7 +12,6 @@ module.exports = function(app) {
       if (err) {
         throw err;
       }
-
       res.render("account", { ...results });
     });
   });
@@ -23,12 +22,28 @@ module.exports = function(app) {
     }
 
     const users = req.app.locals.users;
-    const { name, location, suppliesNeeded, suppliesOffered } = req.body;
+    const {
+      firstName,
+      lastName,
+      city,
+      state,
+      suppliesNeeded,
+      suppliesOffered
+    } = req.body;
     const _id = ObjectID(req.session.passport.user);
 
     users.updateOne(
       { _id },
-      { $set: { name, location, suppliesNeeded, suppliesOffered } },
+      {
+        $set: {
+          firstName,
+          lastName,
+          city,
+          state,
+          suppliesNeeded,
+          suppliesOffered
+        }
+      },
       err => {
         if (err) {
           throw err;

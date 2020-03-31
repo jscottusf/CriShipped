@@ -8,7 +8,7 @@
     <div class="alert alert-success" role="alert">{{this}}</div>
     {{/each}}
     {{#if username }}
-    <h2>{{ name }}'s profile</h2>
+    <h2>{{ firstName}} {{ lastName }}'s profile</h2>
     <table class="table">
         <tr>
             <td>Username: </td>
@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td>Location:</td>
-            <td>{{ location }} </td>
+            <td>{{ city }}, {{ state }} </td>
         </tr>
         <tr>
             <td>Supplies I need:</td>
@@ -30,4 +30,5 @@
 
     </table>
     {{/if}}
+    <p><a href="/">Return to main menu</a></p>
 </div>

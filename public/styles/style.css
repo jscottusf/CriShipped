@@ -34,10 +34,12 @@ body {
 
 a {
   color: #00b7ff;
+  text-decoration: none;
 }
 
 .register-container {
   padding: 50px;
+  padding-top: 0px;
 }
 
 .login-container {
@@ -62,6 +64,16 @@ a {
   grid-template-columns: 1fr 1fr;
 }
 
-.card {
+#card {
+  min-height: 150px;
+}
+
+#card:hover {
+  cursor: pointer;
+  border: solid black 1px;
+}
+
+.grid-container a {
+  text-decoration: none;
   color: black;
 }

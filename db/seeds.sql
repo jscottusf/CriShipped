@@ -1,1 +1,2 @@
-INSERT INTO Examples (text, description) VALUES ('This is some text which will render', 'hello, sql. This is a description that will render');
+INSERT INTO Home (card_title, description) VALUES ('Infobox One', 'Hello, from sql. This would be a great place to include info about criShipped');
+INSERT INTO Home (card_title, description) VALUES ('Infobox Two', 'Hello, from sql. This would alsp be a great place to include info about criShipped');

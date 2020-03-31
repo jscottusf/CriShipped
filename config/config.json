@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "rootpass",
-    "database": "exampledb",
+    "database": "crishipped_db",
     "host": "localhost",
     "port": 3306,
     "dialect": "mysql"

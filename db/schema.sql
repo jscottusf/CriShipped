@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
-USE exampledb;
+DROP DATABASE IF EXISTS crishipped_db;
+CREATE DATABASE crishipped_db;
+USE crishipped_db;

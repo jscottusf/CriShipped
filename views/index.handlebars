@@ -19,36 +19,45 @@
 </style>
 {{> nav}}
 <div class="container">
-    <h1>Hi {{ name }}</h1>
+    <h1>{{ firstName }} {{ lastName }}'s dashboard</h1>
     <div class="grid-container">
-        {{#each examples}}
-        <div class="card mt-4" id="card-{{this.id}}">
-            <div class="card-body">
-                <h5 class="card-title">Example</h5>
-                <p>
-                    <strong>ID:</strong> {{this.id}}</p>
-                </p>
-                <p>
-                    <strong>Text</strong>: {{this.text}}</p>
-                </p>
-                <strong>Description:</strong> {{this.description}}
-                </p>
+        <a href="/myaccount">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit your account</h5>
+                    <p>Change profile features such as your name, location, supplies needed, and supplies offered </p>
+                </div>
             </div>
-        </div>
+        </a>
+        <a href="/users/{{ username }}">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">View your profile</h5>
+                    <p>Your profile is a way of sharing with other crishipped users your location, supplies that you
+                        need or have to offer</p>
+                </div>
+            </div>
+        </a>
+        {{#if city}}
+        <a href="/">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{city}} Infomation</h5>
+                    <p>Connect with users in {{city}}, {{state}}</p>
+                </div>
+            </div>
+        </a>
+        {{/if}}
+        {{#each cards}}
+        <a href="/">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.card_title}}</h5>
+                    <p>{{this.description}}</p>
+                </div>
+            </div>
+        </a>
         {{/each}}
     </div>
-
-
 </div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<br><br><br><br>
