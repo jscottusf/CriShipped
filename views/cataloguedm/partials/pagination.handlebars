@@ -1,4 +1,4 @@
-{% if page_object.length %}
+{{!-- {% if page_object.length %}
 <div class="container">
   <nav>
     <div class="custom-pagination">
@@ -28,4 +28,36 @@
     </div>
   </nav>
 </div>
-{% endif %}
+{% endif %} --}}
+
+{{ if page_object.length }}
+<div class="container">
+  <nav>
+    <div class="custom-pagination">
+      <ul class="pagination">
+        {{ if paginate.hasPreviousPages }}
+        <li><a href="{{ paginate.href(true) }}">&laquo;</a></li> 
+        {{ else }}
+        <li class="disabled"><span>&laquo;</span></li>
+        {{ endif }}
+        {{ for page in pages }}
+        {{ if page.number }}
+        {{ if paginate.page == page.number }}
+        <li class="active"><span>{{ page.number}} <span class="sr-only">(current)</span></span></li>
+        {{ else }}
+        <li><a href="?page={{ page.number }}">{{ page.number }}</a></li>
+        {{ endif }}
+        {{ else }}
+        <li class="disabled"><a href="#">&hellip;</a></li>
+        {{ endif }}
+        {{ endfor }}
+        {{ if paginate.hasNextPages(pageCount) }}
+        <li><a href="{{ paginate.href() }}">&raquo;</a></li>
+        {{ else }}
+        <li class="disabled"><span>&raquo;</span></li>
+        {{ endif }}
+      </ul>
+    </div>
+  </nav>
+</div>
+{{ endif }}

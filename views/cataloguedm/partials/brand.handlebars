@@ -1,4 +1,15 @@
 <h5 class="brand__heading">Brands</h5> 
+{{ for b in brands }}      
+<div class="brand__list-wrapper">
+  {{ if b.slug == selected_brand}}
+  <a href="/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__selected">{{ b.name }}</a>
+  {{ else }}
+  <a href="/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__not-selected">{{ b.name }}</a>
+  {{} endif }}
+</div>
+{{} endfor }}
+
+{{!-- <h5 class="brand__heading">Brands</h5> 
 {% for b in brands %}      
 <div class="brand__list-wrapper">
   {% if b.slug == selected_brand%}
@@ -7,4 +18,4 @@
   <a href="/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__not-selected">{{ b.name }}</a>
   {% endif %}
 </div>
-{% endfor %}
+{% endfor %} --}}
