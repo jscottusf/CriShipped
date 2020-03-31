@@ -28,7 +28,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Find Supplies</a>
@@ -37,7 +37,7 @@
                 <a class="nav-link" href="#">Sell Supplies</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Discussion Forum</a>
+                <a class="nav-link" href="/api/examples">Discussion Forum</a>
             </li>
         </ul>
     </div>
@@ -49,8 +49,21 @@
 </nav>
 <div class="container">
     <h1>Hi {{ name }}</h1>
-
-    {{!-- Main page code goes here --}}
+    {{#each examples}}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Example</h5>
+            <p>
+                <strong>ID:</strong> {{this.id}}</p>
+            </p>
+            <p>
+                <strong>Text</strong>: {{this.text}}</p>
+            </p>
+            <strong>Description:</strong> {{this.description}}
+            </p>
+        </div>
+    </div>
+    {{/each}}
 
 </div>
 

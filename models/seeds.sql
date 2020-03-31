@@ -1,0 +1,1 @@
+INSERT INTO Examples (text, description) VALUES ('This is some text which will render', 'hello, sql. This is a description that will render');
