@@ -2,9 +2,9 @@
 {{#for b in brands}}      
 <div class="brand__list-wrapper">
   {{#if b.slug == selected_brand}}
-  <a href="/cataloguedm/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__selected">{{b.name}}</a>
+  <a href="/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__selected">{{b.name}}</a>
   {{else}}
-  <a href="/cataloguedm/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__not-selected">{{b.name}}</a>
+  <a href="/catalogue/{{selected_category}}/{{b.slug}}/" class="brand__not-selected">{{b.name}}</a>
   {{/if }}
 </div>
 {{/for }}
