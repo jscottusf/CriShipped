@@ -1,6 +1,10 @@
 'use strict';
-var catalogueService = require('../services/catalogue.service.js');
+var catalogueService = require('../services/catalogue.service');
+
 // var cartService = require('../services/cart.service.js');
+
+
+
 var date = new Date();
 
 /* Get all products */
@@ -70,6 +74,8 @@ var fetchPaginatedProducts = function (req, res) {
     });
   });
 };
+
+// pages: res.locals.paginate.getArrayPages(5, pageCount, req.query.page),
 
 /* Exports all methods */
 module.exports = {

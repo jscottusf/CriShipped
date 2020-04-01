@@ -1,6 +1,6 @@
-{{ extends "layout.html" }}
+{{#extends "index"}}
 
-{{ block content }}
+{{#block}} {{#content}}{{/content}}
 
 <div class="container">
   <div class="row">
@@ -8,20 +8,20 @@
       <h4 class="index__filter-title">Filter By</h4>
       <hr />
       <div>
-        {{ include 'partials/category.html' }}
+        {{#include 'partials/category.handlebars'}}
       </div>
       <div>
-        {{ include 'partials/brand.html' }}
+        {{#include 'partials/brand.handlebars'}}
       </div>
     </div>
-    <div class="col-md-9 {% if page_object %}index__product-wrapper--has-pages{%else%}index__product-wrapper--no-pages{% endif%}">
-      {{ include 'partials/product_list.html' }}
+    <div class="col-md-9 {{#if page_object}}index__product-wrapper--has-pages{{else}}index__product-wrapper--no-pages{{/if}}">
+      {{#include 'partials/product_list.handlebars'}}
     </div>
   </div>
 </div>
 
 
-{{ endblock }}
+{{/block}}
 
 
 
