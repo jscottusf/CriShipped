@@ -9,18 +9,18 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/users", function(req, res) {
-    const users = req.app.locals.users;
-    users
-      .find()
-      .limit(0)
-      .toArray((err, results) => {
-        if (err) {
-          throw err;
-        }
-        res.json(results);
-      });
-  });
+  // app.get("/api/users", function(req, res) {
+  //   const users = req.app.locals.users;
+  //   users
+  //     .find()
+  //     .limit(0)
+  //     .toArray((err, results) => {
+  //       if (err) {
+  //         throw err;
+  //       }
+  //       res.json(results);
+  //     });
+  // });
 
   // Create a new Home
   app.post("/api/home", function(req, res) {

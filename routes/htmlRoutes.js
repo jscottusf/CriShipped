@@ -10,6 +10,14 @@ module.exports = function(app) {
     res.render("login");
   });
 
+  app.get("/register", checkNotAuthenticated, (req, res) => {
+    res.render("register");
+  });
+
+  app.get("/faqs", (req, res) => {
+    res.render("faq");
+  });
+
   app.post(
     "/login",
     checkNotAuthenticated,
@@ -21,10 +29,6 @@ module.exports = function(app) {
       res.redirect("/");
     }
   );
-
-  app.get("/register", checkNotAuthenticated, (req, res) => {
-    res.render("register");
-  });
 
   app.post("/register", checkNotAuthenticated, (req, res, next) => {
     //const hashedPassword = bcrypt.hash(req.body.password, 10);

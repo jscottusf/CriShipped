@@ -1,31 +1,14 @@
-<style>
-    body {
-        color: azure;
-    }
-
-    body::after {
-        content: "";
-        background: url("/images/flood.jpg");
-        background-size: cover;
-        background-position-y: top;
-        opacity: 0.5;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        position: absolute;
-        z-index: -1;
-    }
-</style>
+{{> style}}
 {{> nav}}
 <div class="container">
-    <h1>{{ firstName }} {{ lastName }}'s dashboard</h1>
+    <h1 id="hi">Hi {{ firstName }}</h1>
     <div class="grid-container">
         <a href="/myaccount">
             <div class="card mt-4" id="card">
                 <div class="card-body">
                     <h5 class="card-title">Edit your account</h5>
-                    <p>Change profile features such as your name, location, supplies needed, and supplies offered </p>
+                    <p>Change profile features such as name, location, supplies needed, and supplies offered
+                    </p>
                 </div>
             </div>
         </a>
@@ -43,7 +26,7 @@
             <div class="card mt-4" id="card">
                 <div class="card-body">
                     <h5 class="card-title">{{city}} Infomation</h5>
-                    <p>Connect with users in {{city}}, {{state}}</p>
+                    <p>Get the latest news and information for {{city}}, {{state}}. Connect with nearby users.</p>
                 </div>
             </div>
         </a>
@@ -61,3 +44,4 @@
     </div>
 </div>
 <br><br><br><br>
+<script src="/js/index.js"></script>

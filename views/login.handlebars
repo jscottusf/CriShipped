@@ -1,21 +1,19 @@
 <style>
     body {
         background-image: url();
-        background: url("/images/flood.jpg");
+        background: url("/images/track.jpeg");
         background-size: cover;
         background-position-y: top;
+    }
+
+    #login {
+        color: #353b40;
     }
 </style>
 <div class="login-container">
     <h1>CriShipped Login</h1>
 
-    {{#each messages.error}}
-    <div class="alert alert-danger" role="alert">{{this}}</div>
-    {{/each}}
-
-    {{#each messages.success}}
-    <div class="alert alert-success" role="alert">{{this}}</div>
-    {{/each}}
+    {{> messages}}
 
     <form id="login" action="/login" method="POST">
         <div class="form-group">
