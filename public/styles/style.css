@@ -33,7 +33,7 @@ a {
 }
 
 /* setting color for h1 on index page */
-.container h1 {
+#hi {
   color: #353b40;
 }
 
