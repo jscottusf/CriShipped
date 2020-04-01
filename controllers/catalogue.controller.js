@@ -56,7 +56,7 @@ var fetchPaginatedProducts = function (req, res) {
         const itemCount = pageObject.count;
         const pageCount = Math.ceil(pageObject.count / req.query.limit);
         res.render(
-          'catalogue',
+          'catalogue.handlebars',
           {
             title: 'Product List',
             year: date.getFullYear(),

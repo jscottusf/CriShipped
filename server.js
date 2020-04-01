@@ -65,18 +65,33 @@ app.use(paginate.middleware(9, 20));
 // }));
 // app.set('view engine', 'handlebars');
 
-const hbs = exphbs.create({
-  extname      :'hbs',
-  layoutsDir   : 'views/layouts/',
-  defaultLayout: 'main',
-  catalogue  : [
-    'views/cataloguedm/',
-    'views/cataloguedm/partials'
-  ]
+// var express = require('express');
+// var exphbs  = require('express-handlebars');
+
+// var app = express();
+var hbs = exphbs.create({ 
+  /* config */
+  defaultLayout: "main", 
 });
 
-app.engine('hbs', hbs.engine);
-app.set('view engine', 'hbs');
+// Register `hbs.engine` with the Express app.
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+// const hbs = exphbs.create({
+//   extname      :'handlebars',
+//   layoutsDir   : 'views/layouts/',
+//   defaultLayout: 'main',
+//   catalogue  : [
+//     'views/cataloguedm/',
+//     'views/cataloguedm/partials'
+//   ]
+// });
+
+// app.engine('hbs', hbs.engine);
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'handlebars');
+
 
 // 'views',
 //     'views/cataloguedm',
