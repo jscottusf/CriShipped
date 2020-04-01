@@ -22,7 +22,7 @@ module.exports = function(app) {
   //
   //'mongodb://localhost'
   MongoClient.connect(
-    process.env.DATABASE_URL,
+    process.env.MONGODB_URI,
     { useUnifiedTopology: true },
     (err, client) => {
       if (err) {
