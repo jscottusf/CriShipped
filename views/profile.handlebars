@@ -1,14 +1,10 @@
+{{> style}}
 {{> nav}}
-<div class="container">
-    {{#each messages.error}}
-    <div class="alert alert-danger" role="alert">{{this}}</div>
-    {{/each}}
+<div class="profile-container">
+    {{> messages}}
 
-    {{#each messages.success}}
-    <div class="alert alert-success" role="alert">{{this}}</div>
-    {{/each}}
     {{#if username }}
-    <h2>{{ firstName}} {{ lastName }}'s profile</h2>
+    <h2>{{ firstName}} {{ lastName }}</h2>
     <table class="table">
         <tr>
             <td>Username: </td>
