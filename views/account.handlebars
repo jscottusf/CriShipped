@@ -1,0 +1,49 @@
+{{> nav}}
+<div class="container">
+    <h2>Edit your profile</h2>
+    <form action="/myaccount" method="POST">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" value="{{ username }}" class="form-control" name="username" id="username" required>
+        </div>
+        <div class="grid-container">
+            <div><strong>Name</strong></div>
+            <div></div>
+            <div class="form-group">
+                <label for="firstName">First:</label>
+                <input type="text" value="{{ firstName }}" class="form-control" name="firstName" id="firstName"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last:</label>
+                <input type="text" value="{{ lastName}}" class="form-control" name="lastName" id="lastName" required>
+            </div>
+        </div>
+        <div class="grid-container">
+            <div><strong>Location</strong></div>
+            <div></div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" value="{{ city }}" class="form-control" name="city" id="city">
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input type="text" value="{{ state }}" class="form-control" name="state" id="state">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="suppliesNeeded">Supplies I need:</label>
+            <input type="text" value="{{ suppliesNeeded }}" class="form-control" name="suppliesNeeded"
+                id="suppliesNeeded">
+        </div>
+        <div class="form-group">
+            <label for="suppliesOffered">Supplies I am offering:</label>
+            <input type="text" value="{{ suppliesOffered }}" class="form-control" name="suppliesOffered"
+                id="suppliesOffered">
+        </div>
+        <button class="btn btn-primary">Update</button>
+    </form>
+
+    <p><a href="/users/{{username}}">View your profile</a></p>
+</div>

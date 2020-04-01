@@ -1,13 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-  var Example = sequelize.define(
-    "Example",
+  var Home = sequelize.define(
+    "Home",
     {
-      text: DataTypes.STRING,
+      card_title: DataTypes.STRING,
       description: DataTypes.TEXT
     },
     {
+      freezeTableName: true,
       timestamps: false
     }
   );
-  return Example;
+  return Home;
 };

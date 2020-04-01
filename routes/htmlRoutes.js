@@ -6,19 +6,6 @@ const ObjectID = require("mongodb").ObjectID;
 module.exports = function(app) {
   app.get("/", checkAuthenticated, getUsername, getExamples, renderIndex);
 
-  // (req, res) => {
-  //   const users = req.app.locals.users;
-  //   const _id = ObjectID(req.session.passport.user);
-  //   console.log(_id);
-
-  //   users.findOne({ _id }, (err, results) => {
-  //     if (err || !results) {
-  //       res.render("index", { messages: { error: ["User not found"] } });
-  //     }
-  //     res.render("index", { name: results.name });
-  //   });
-  // });
-
   app.get("/login", checkNotAuthenticated, (req, res) => {
     res.render("login");
   });
@@ -44,7 +31,9 @@ module.exports = function(app) {
     const registrationParams = req.body;
     const users = req.app.locals.users;
     const payload = {
-      name: registrationParams.name,
+      firstName: registrationParams.firstName,
+      lastName: registrationParams.lastName,
+      username: registrationParams.username,
       email: registrationParams.email,
       password: authUtils.hashPassword(registrationParams.password)
     };
@@ -53,7 +42,7 @@ module.exports = function(app) {
       if (err) {
         req.flash(
           "error",
-          "User account already exists with that email address"
+          "User account already exists with that email address or username"
         );
         res.redirect("/register");
       } else {
@@ -61,10 +50,6 @@ module.exports = function(app) {
         res.redirect("/login");
       }
     });
-  });
-
-  app.get("*", function(req, res) {
-    res.render("404");
   });
 
   app.delete("/logout", (req, res) => {
@@ -92,21 +77,32 @@ module.exports = function(app) {
     const _id = ObjectID(req.session.passport.user);
     console.log(_id);
     users.findOne({ _id }, (err, results) => {
-      req.name = results.name;
+      req.firstName = results.firstName;
+      req.lastName = results.lastName;
+      req.username = results.username;
+      req.city = results.city;
+      req.state = results.state;
       next();
     });
   }
 
   function getExamples(req, res, next) {
-    db.Example.findAll({}).then(function(data) {
+    db.Home.findAll({}).then(function(data) {
       //console.log(dbExamples);
-      req.example = data;
+      req.home = data;
       next();
     });
   }
 
   function renderIndex(req, res) {
     //console.log(req.examples[0].text);
-    res.render("index", { name: req.name, examples: req.example });
+    res.render("index", {
+      firstName: req.firstName,
+      lastName: req.lastName,
+      username: req.username,
+      city: req.city,
+      state: req.state,
+      cards: req.home
+    });
   }
 };
