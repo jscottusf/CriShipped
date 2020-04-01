@@ -13,7 +13,7 @@ body {
 #register-jumbo {
   background: url("/images/empty.jpg");
   background-image: brightness(50%) saturate(140%);
-  color: azure;
+  color: white;
   height: 100vh;
   background-size: cover;
   background-position: center;
@@ -44,7 +44,7 @@ a {
 
 .login-container {
   padding: 50px;
-  color: azure;
+  color: white;
 }
 
 #login,
@@ -68,13 +68,13 @@ a {
 /* Desiging main cards on index page */
 #card {
   background-color: #353b40;
-  color: azure;
+  color: white;
   min-height: 150px;
 }
 
 #card:hover {
   cursor: pointer;
-  border: solid azure 2px;
+  border: solid white 2px;
 }
 
 /* Getting rid of link text decoration such as underlining */
@@ -90,7 +90,7 @@ a {
   margin-top: 10px;
   padding: 30px;
   color: black;
-  background-color: azure;
+  background-color: white;
   border-radius: 15px;
   width: 80%;
   align-self: center;
