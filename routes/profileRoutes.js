@@ -33,6 +33,7 @@ module.exports = function(app) {
       suppliesNeeded,
       suppliesOffered
     } = req.body;
+    const slug = req.body.username.toLowerCase();
     const _id = ObjectID(req.session.passport.user);
 
     users.updateOne(
@@ -40,6 +41,7 @@ module.exports = function(app) {
       {
         $set: {
           username,
+          slug,
           firstName,
           lastName,
           city,
@@ -62,15 +64,15 @@ module.exports = function(app) {
     //res.redirect("/");
   });
 
-  app.get("/users/:username", (req, res, next) => {
+  app.get("/users/:slug", (req, res, next) => {
     if (!req.isAuthenticated()) {
       req.flash("error", "You must be logged in to view user profiles");
       res.redirect("/login");
     } else {
       const users = req.app.locals.users;
-      const username = req.params.username;
+      const slug = req.params.slug.toLowerCase();
 
-      users.findOne({ username }, (err, results) => {
+      users.findOne({ slug }, (err, results) => {
         if (err || !results) {
           // var data = {
           //   message: req.flash("error", "User account not found")
@@ -78,7 +80,7 @@ module.exports = function(app) {
           req.flash("error", "Error 404 page not found");
           res.render("404");
         } else {
-          res.render("profile", { ...results, username });
+          res.render("profile", { ...results, slug });
         }
       });
     }
