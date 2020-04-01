@@ -8,14 +8,14 @@
       <h4 class="index__filter-title">Filter By</h4>
       <hr />
       <div>
-        {{#include 'partials/category.handlebars'}}
+        {{#include '/cataloguedm/partials/category.handlebars'}}
       </div>
       <div>
         {{#include 'partials/brand.handlebars'}}
       </div>
     </div>
     <div class="col-md-9 {{#if page_object}}index__product-wrapper--has-pages{{else}}index__product-wrapper--no-pages{{/if}}">
-      {{#include 'partials/product_list.handlebars'}}
+      {{#include '/cataloguedm/partials/product_list.handlebars'}}
     </div>
   </div>
 </div>

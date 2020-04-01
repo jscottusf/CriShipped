@@ -5,6 +5,7 @@ var paginate = require('express-paginate');
 // var routerRegister = require('./routes/router.register');
 var session = require('express-session');
 var path = require('path');
+var bodyParser = require('body-parser');
 // var cookieParser = require('cookie-parser');
 
 var handlebars = require('handlebars'),
@@ -20,6 +21,8 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));

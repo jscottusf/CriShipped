@@ -13,9 +13,9 @@
 {{#for c in categories}}      
 <div class="category__list-wrapper">
   {{#if c.slug == selected_category}}
-  <a href="/catalogue/{{c.slug}}/{{selected_brand}}/" class="category__selected">{{c.name}}</a>
+  <a href="/cataloguedm/catalogue/{{c.slug}}/{{selected_brand}}/" class="category__selected">{{c.name}}</a>
   {{else}}
-  <a href="/catalogue/{{c.slug}}/{{selected_brand}}/" class="category__not-selected">{{ c.name }}</a>
+  <a href="/cataloguedm/catalogue/{{c.slug}}/{{selected_brand}}/" class="category__not-selected">{{ c.name }}</a>
   {{/if}}
 </div>
 {{/for}}
