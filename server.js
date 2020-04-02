@@ -6,6 +6,7 @@ var paginate = require('express-paginate');
 var session = require('express-session');
 var path = require('path');
 var bodyParser = require('body-parser');
+const fs = require('fs');
 // var cookieParser = require('cookie-parser');
 
 var handlebars = require('handlebars'),
@@ -73,6 +74,12 @@ var hbs = exphbs.create({
   /* config */
   defaultLayout: "main", 
 });
+
+// Register helpers 
+handlebars.registerHelper(layouts(handlebars));
+
+// Register partials 
+handlebars.registerPartial('index', fs.readFileSync('views/index.handlebars', 'utf8'));
 
 // Register `hbs.engine` with the Express app.
 app.engine('handlebars', hbs.engine);
