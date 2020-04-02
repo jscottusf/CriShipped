@@ -39,7 +39,8 @@ module.exports = function(app) {
       lastName: registrationParams.lastName,
       username: registrationParams.username,
       email: registrationParams.email,
-      password: authUtils.hashPassword(registrationParams.password)
+      password: authUtils.hashPassword(registrationParams.password),
+      slug: registrationParams.username.toLowerCase()
     };
 
     users.insertOne(payload, err => {
