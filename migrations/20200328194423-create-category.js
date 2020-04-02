@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Categories', {
+    return queryInterface.createTable("Categories", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -29,8 +29,8 @@ module.exports = {
       },
       categoryStatus: {
         type: Sequelize.ENUM,
-        values: ['active', 'inactive'],
-        defaultValue: ['active']
+        values: ["active", "inactive"],
+        defaultValue: ["active"]
       },
       isDeleted: {
         type: Sequelize.BOOLEAN,
@@ -47,6 +47,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Categories');
+    return queryInterface.dropTable("Categories");
   }
 };

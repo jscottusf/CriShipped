@@ -1,30 +1,30 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('ProductBrands', {
+    return queryInterface.createTable("ProductBrands", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      productID: {
+      productId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Products',
-          key: 'Id'
+          model: "Products",
+          key: "Id"
         },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+        onDelete: "cascade",
+        onUpdate: "cascade"
       },
       brandId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Brands',
-          key: 'Id'
+          model: "Brands",
+          key: "Id"
         },
-        onDelete: 'cascade',
-        onUpdate: 'cascade'
+        onDelete: "cascade",
+        onUpdate: "cascade"
       },
       createdAt: {
         allowNull: false,
@@ -37,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('ProductBrands');
+    return queryInterface.dropTable("ProductBrands");
   }
 };
