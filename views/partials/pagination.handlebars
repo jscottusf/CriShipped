@@ -40,9 +40,10 @@
         {{else}}
         <li class="disabled"><span>&laquo;</span></li>
         {{/if}}
-        {{#for page in pages}}
+        {{#each pages as |page|}}
+        {{!-- {{#for page in pages}} --}}
         {{#if page.number}}
-        {{#if paginate.page == page.number}}
+        {{#if (paginate.page page.number)true}}
         <li class="active"><span>{{page.number}} <span class="sr-only">(current)</span></span></li>
         {{else}}
         <li><a href="?page={{page.number}}">{{page.number}}</a></li>
@@ -50,7 +51,8 @@
         {{else}}
         <li class="disabled"><a href="#">&hellip;</a></li>
         {{/if}}
-        {{/for}}
+        {{/each}}
+        {{!-- {{/for}} --}}
         {{#if paginate.hasNextPages(pageCount)}}
         <li><a href="{{paginate.href()}}">&raquo;</a></li>
         {{else}}

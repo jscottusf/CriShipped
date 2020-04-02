@@ -7,11 +7,13 @@
   <hr class="product-list_upper-horizontal-line" style="margin-bottom: 25px;"/>
   <div class="row">
     {{#if page_object.length}}
-    {{#for product in page_object}}
+    {{#each page_object as |product|}}
+    {{!-- {{#for product in page_object}} --}}
     <div class="col-md-4">
       {{'partials/product_list_item.handlebars'}}
     </div>
-    {{/for}}
+    {{/each}}
+    {{!-- {{/for}} --}}
 
     {{else}}
     <div class="product-list_empty-notifier">
