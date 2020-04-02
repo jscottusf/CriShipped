@@ -4,7 +4,7 @@
       {{'partials/pagination.handlebars'}}
     </div>
   </div>
-  <hr class="product-list__upper-horizontal-line" style="margin-bottom: 25px;"/>
+  <hr class="product-list_upper-horizontal-line" style="margin-bottom: 25px;"/>
   <div class="row">
     {{#if page_object.length}}
     {{#for product in page_object}}
@@ -14,7 +14,7 @@
     {{/for}}
 
     {{else}}
-    <div class="product-list__empty-notifier">
+    <div class="product-list_empty-notifier">
       <p>
         There are no products that match your filters.
       </p>
@@ -24,7 +24,7 @@
     </div>
     {{/if}}
   </div>
-  <hr class="product-list__lower-horizontal-line" style="margin-bottom: 4px;"/>
+  <hr class="product-list_lower-horizontal-line" style="margin-bottom: 4px;"/>
   <div class="row">
     <div class="pull-right">
       {{'partials/pagination.handlebars'}}
