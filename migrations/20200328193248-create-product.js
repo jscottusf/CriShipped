@@ -27,10 +27,6 @@ module.exports = {
       metaKeywords: {
         type: Sequelize.STRING
       },
-      sku: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       price: {
         type: Sequelize.DECIMAL,
         allowNull: false
