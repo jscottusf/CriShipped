@@ -10,21 +10,12 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
       },
       slug: {
         type: Sequelize.STRING,
-        allowNull: false
       },
       description: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      metaDescription: {
-        type: Sequelize.STRING
-      },
-      metaKeywords: {
-        type: Sequelize.STRING
       },
       brandStatus: {
         type: Sequelize.ENUM,

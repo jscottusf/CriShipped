@@ -40,7 +40,8 @@
         {{else}}
         <li class="disabled"><span>&laquo;</span></li>
         {{/if}}
-        {{#each pages as |page|}}
+        {{#each page as |pages|}}
+        {{!-- {{#each pages as |page|}} --}}
         {{!-- {{#for page in pages}} --}}
         {{#if page.number}}
         {{#if (paginate.page page.number)true}}

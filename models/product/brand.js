@@ -6,8 +6,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       slug: DataTypes.STRING,
       description: DataTypes.STRING,
-      metaDescription: DataTypes.STRING,
-      metaKeywords: DataTypes.STRING,
       brandStatus: { type: DataTypes.ENUM, values: ["active", "inactive"] },
       isDeleted: DataTypes.BOOLEAN
     },

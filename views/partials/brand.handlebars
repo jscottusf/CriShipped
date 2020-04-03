@@ -1,5 +1,6 @@
 <h5 class="brand_heading">Brands</h5> 
-{{#each brands as |b|}}
+{{!-- {{#each brands as |b|}} --}}
+{{#each b as |brands|}}
 {{!-- {{#for b in brands}}            --}}
 <div class="brand_list-wrapper">
   {{#if (b.slug selected_brand)true}}
