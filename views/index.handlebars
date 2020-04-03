@@ -1,38 +1,50 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}} - CriShipped</title>
-  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"> --}}
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/public/styles/crishipped.css" />
-  <link rel="stylesheet" type="text/css" href="/public/styles/main.css" />
-</head>
-
-<body>
-  <div class="navbar navbar-default navbar-static-top layout_nav-wrapper">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <div class="layout_nav-brand-wrapper">
-          <a href="/" class="layout_nav-brand">CriShipped</a>
-        </div>
-      </div>
-      <div class="navbar-collapse collapse navbar-right layout_cart-wrapper">
-        <ul class="nav navbar-nav">
-          {{!-- <li>{% include 'cart_summary_widget.html' %}</li> --}}
-        </ul>
-      </div>
+{{> style}}
+{{> nav}}
+<div class="container">
+    <h1 id="hi">Hi {{ firstName }}</h1>
+    <div class="grid-container">
+        <a href="/myaccount">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit your account</h5>
+                    <p>Change profile features such as name, location, supplies needed, and supplies offered
+                    </p>
+                </div>
+            </div>
+        </a>
+        {{!-- Params are converted to lowercase in the backend, so slug is not needed here --}}
+        <a href="/users/{{ username }}">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">View your profile</h5>
+                    <p>Your profile is a way of sharing with other crishipped users your location, supplies that you
+                        need or have to offer</p>
+                </div>
+            </div>
+        </a>
+        {{#if city}}
+        <a href="/location/{{city}}">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{city}} Infomation</h5>
+                    <p>Get the latest news and information for {{city}}, {{state}}</p>
+                </div>
+            </div>
+        </a>
+        {{/if}}
+        {{#each cards}}
+        <a href="/">
+            <div class="card mt-4" id="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.card_title}}</h5>
+                    <p>{{this.description}}</p>
+                </div>
+            </div>
+        </a>
+        {{/each}}
     </div>
-  </div>
 
-  <div class="container body-content layout_content-wrapper">
+      <div class="container body-content layout_content-wrapper">
     {{!-- {{#block 'catalogue'}}{{/block}} --}}
 
 
@@ -61,12 +73,15 @@
 
 
     <hr />
-    <footer>
-      <p class="layout_copyright">&copy; {{year}} - CriShipped</p>
-    </footer>
-  </div>
+  <footer>
+    <p class="layout_copyright">&copy; {{year}} - CriShipped</p>
+  </footer>
+
+
+</div>
+<br><br><br><br>
+<script src="/js/index.js"></script>
+
+
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</body>
-
-</html>

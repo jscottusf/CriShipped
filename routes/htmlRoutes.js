@@ -1,27 +1,141 @@
-var db = require("../models");
+// var db = require("../models");
+
+// module.exports = function(app) {
+//   // Load index page
+//   // app.get("/", function(req, res) {
+//   //   db.Example.findAll({}).then(function(dbExamples) {
+//   //     res.render("index", {
+//   //       msg: "Welcome!",
+//   //       examples: dbExamples
+//   //     });
+//   //   });
+//   // });
+
+//   // Load example page and pass in an example by id
+//   app.get("/example/:id", function(req, res) {
+//     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+//       res.render("example", {
+//         example: dbExample
+//       });
+//     });
+//   });
+
+//   // Render 404 page for any unmatched routes
+//   app.get("*", function(req, res) {
+//     res.render("404");
+//   });
+// };
+
+const authUtils = require("../utils/auth");
+const db = require("../models");
+const passport = require("passport");
+const ObjectID = require("mongodb").ObjectID;
 
 module.exports = function(app) {
-  // Load index page
-  // app.get("/", function(req, res) {
-  //   db.Example.findAll({}).then(function(dbExamples) {
-  //     res.render("index", {
-  //       msg: "Welcome!",
-  //       examples: dbExamples
-  //     });
-  //   });
-  // });
+  app.get("/", checkAuthenticated, getUsername, getExamples, renderIndex);
 
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+  app.get("/login", checkNotAuthenticated, (req, res) => {
+    res.render("login");
+  });
+
+  app.get("/register", checkNotAuthenticated, (req, res) => {
+    res.render("register");
+  });
+
+  app.get("/faqs", (req, res) => {
+    res.render("faq");
+  });
+
+  app.post(
+    "/login",
+    checkNotAuthenticated,
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      failureFlash: "wrong username or password"
+    }),
+    (req, res, next) => {
+      res.redirect("/");
+    }
+  );
+
+  app.post("/register", checkNotAuthenticated, (req, res, next) => {
+    //const hashedPassword = bcrypt.hash(req.body.password, 10);
+    const registrationParams = req.body;
+    const users = req.app.locals.users;
+    const payload = {
+      firstName: registrationParams.firstName,
+      lastName: registrationParams.lastName,
+      username: registrationParams.username,
+      email: registrationParams.email,
+      password: authUtils.hashPassword(registrationParams.password),
+      slug: registrationParams.username.toLowerCase()
+    };
+
+    users.insertOne(payload, err => {
+      if (err) {
+        req.flash(
+          "error",
+          "User account already exists with that email address or username"
+        );
+        res.redirect("/register");
+      } else {
+        req.flash("success", "User account registered successfully");
+        res.redirect("/login");
+      }
     });
   });
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
+  app.delete("/logout", (req, res) => {
+    req.logOut();
+    res.redirect("/login");
   });
+
+  function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+
+    res.redirect("/register");
+  }
+
+  function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect("/");
+    }
+    next();
+  }
+
+  function getUsername(req, res, next) {
+    const users = req.app.locals.users;
+    const _id = ObjectID(req.session.passport.user);
+    console.log(_id);
+    users.findOne({ _id }, (err, results) => {
+      req.firstName = results.firstName;
+      req.lastName = results.lastName;
+      req.username = results.username;
+      req.city = results.city;
+      req.state = results.state;
+      next();
+    });
+  }
+
+  function getExamples(req, res, next) {
+    db.Home.findAll({}).then(function(data) {
+      //console.log(dbExamples);
+      req.home = data;
+      next();
+    });
+  }
+
+  function renderIndex(req, res) {
+    //console.log(req.examples[0].text);
+    res.render("index", {
+      firstName: req.firstName,
+      lastName: req.lastName,
+      username: req.username,
+      city: req.city,
+      state: req.state,
+      cards: req.home
+    });
+  }
 };
