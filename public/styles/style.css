@@ -98,7 +98,8 @@ a {
 
 /* FAQ css styling */
 
-.faq-container {
+.faq-container,
+.location-container {
   margin: 25px;
   padding: 25px;
   background-color: white;
@@ -156,4 +157,39 @@ dl.faq button[aria-expanded="false"]::before {
 dl.faq button[aria-expanded="true"]::before {
   content: url("../images/down-arrow-brown.png");
   padding-right: 0.35em;
+}
+
+/* map and location data page */
+
+#map-h4 {
+  padding: 0px 5px;
+  margin: 0px 5px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+}
+
+.mapboxgl-canvas {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 10px;
+}
+
+.news {
+  object-fit: cover;
+  height: 400px;
+  filter: brightness(75%) saturate(140%);
+}
+
+.carousel-inner a {
+  color: #d6c0bb;
+}
+
+.carousel-inner a:hover {
+  transition: 1s;
+  color: white;
 }
