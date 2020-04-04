@@ -49,7 +49,7 @@ Check out the deployed site here:
 
 
 
-## Technoligies that were used in the development and implementation of the site:
+## Technologies that were used in the development and implementation of the site:
 - MongoDB 
 - Bootstrap
 - Node.js along with the following **Node Packages**...
