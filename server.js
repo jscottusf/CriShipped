@@ -36,7 +36,7 @@ require("./config/mongo")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/locationRoutes")(app);
-require("./routes/router.register")(app);
+require("./routes/catalogueRoutes")(app);
 require("./routes/profileRoutes")(app);
 
 var syncOptions = { force: false };
