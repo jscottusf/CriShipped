@@ -87,7 +87,7 @@ module.exports = function(app) {
       city +
       " " +
       state +
-      " covid&pageSize=5&apiKey=51ad50d7f392413b9588cea498c80fd3";
+      " disaster&pageSize=5&apiKey=51ad50d7f392413b9588cea498c80fd3";
     axios.get(newsUrl).then(function(response) {
       req.newsData = response.data.articles;
       next();
