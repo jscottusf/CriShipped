@@ -1,26 +1,41 @@
-{{!-- {{#extend "index"}}
+{{> style}}
+{{> nav}}
 
-{{#block 'catalogue'}} 
+<div class="catalogue-container body-content layout_content-wrapper">
+  {{!-- {{#block 'catalogue'}}{{/block}} --}}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3 index_filter-wrapper">
-      <h4 class="index_filter-title">Filter By</h4>
-      <hr />
-      <div>
-        {{'partials/category.handlebars'}}
+
+  {{!-- catalogue code --}}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 index_filter-wrapper">
+        <h4 class="index_filter-title">Filter By</h4>
+        <hr />
+        <div>
+          {{> category}}
+          {{!-- {{'partials/category.handlebars'}} --}}
+        </div>
+        <div>
+          {{> brand}}
+          {{!-- {{'partials/brand.handlebars'}} --}}
+        </div>
       </div>
-      <div>
-        {{'partials/brand.handlebars'}}
+      <div
+        class="col-md-9 {{#if page_object}}index_product-wrapper-has-pages{{else}}index_product-wrapper-no-pages{{/if}}">
+        {{> product_list}}
+        {{!-- {{'partials/product_list.handlebars'}} --}}
+
       </div>
-    </div>
-    <div class="col-md-9 {{#if page_object}}index_product-wrapper-has-pages{{else}}index_product-wrapper-no-pages{{/if}}">
-      {{'partials/product_list.handlebars'}}
     </div>
   </div>
+
+
+  <hr />
+  <footer>
+    <p class="layout_copyright">&copy; {{year}} - CriShipped</p>
+  </footer>
+
+
 </div>
-
-
-{{/block}}
-{{/extend}} --}}
-
+<br><br><br><br>
+<script src="/js/catalogue.js"></script>

@@ -4,7 +4,7 @@ var express = require("express");
 var router = express.Router();
 
 /* Get Paged Product */
-router.all("/", catalogueController.getPagedProducts);
+router.all("/catalogue", catalogueController.getPagedProducts);
 router.get(
   "/catalogue/:category_slug/:brand_slug",
   catalogueController.getPagedProducts

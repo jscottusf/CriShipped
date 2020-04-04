@@ -193,3 +193,13 @@ dl.faq button[aria-expanded="true"]::before {
   transition: 1s;
   color: white;
 }
+
+/* Catalogue CSS */
+
+.catalogue-container {
+  margin: 25px;
+  padding: 25px;
+  border-radius: 15px;
+  background-color: white;
+  color: #353b40;
+}
