@@ -6,11 +6,26 @@ const exphbs = require("express-handlebars");
 const db = require("./models");
 const app = express();
 const PORT = process.env.PORT || 8080;
+const paginate = require("express-paginate");
+//const session = require("express-session");
+const path = require("path");
+const bodyParser = require("body-parser");
+//const fs = require("fs");
+const handlebars = require("handlebars"),
+  layouts = require("handlebars-layouts");
+
+layouts.register(handlebars);
 
 // Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+
+//Pagination Middleware
+app.use(paginate.middleware(9, 20));
 
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -21,6 +36,7 @@ require("./config/mongo")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/locationRoutes")(app);
+require("./routes/router.register")(app);
 require("./routes/profileRoutes")(app);
 
 var syncOptions = { force: false };
