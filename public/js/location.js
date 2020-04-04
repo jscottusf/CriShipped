@@ -13,7 +13,7 @@ function getLocation(city, state) {
   console.log(locationSearch);
   $.ajax({
     url: locationSearch,
-    method: "GET"
+    method: "GET",
   }).then(function(response) {
     latitude = response.features[0].center[1];
     longitude = response.features[0].center[0];
@@ -29,7 +29,7 @@ function mapBox(long, lat) {
     container: "map",
     style: "mapbox://styles/mapbox/streets-v11",
     center: [long, lat],
-    zoom: 9
+    zoom: 9,
   });
   //display map marker
   new mapboxgl.Marker().setLngLat([long, lat]).addTo(map);
@@ -50,29 +50,23 @@ function getTweets() {
     url:
       "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=Arkansasgov",
     headers: {
-      Authorization: "Bearer 5954192-Lr0ma2vvgF34aPWMmAibWlam2YxVTuWb2CPqY7MVTr"
-    }
+      Authorization:
+        "Bearer 5954192-Lr0ma2vvgF34aPWMmAibWlam2YxVTuWb2CPqY7MVTr",
+    },
   }).then(function(response) {
     if (error) throw error;
     console.log(response.body);
   });
 }
 
-function getNOAA() {
+function getNOAA(long, lat) {
   $.ajax({
-    url: "https://www.ncdc.noaa.gov/cdo-web/api/v2/locationcategories",
+    url: "https://api.weather.gov/points/" + long + "," + lat,
     method: "GET",
-    data: {
-      CITY: city,
-      STATE: state
-    },
-    headers: {
-      token: noaaToken
-    }
   }).then(function(response) {
     console.log(response);
   });
 }
 
 getLocation(city, state);
-getNOAA();
+//getNOAA();
