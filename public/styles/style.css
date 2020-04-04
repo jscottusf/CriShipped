@@ -1,0 +1,195 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Registration and login page styling */
+#register-jumbo {
+  background: url("/images/empty.jpg");
+  background-image: brightness(50%) saturate(140%);
+  color: white;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+  padding: 200px;
+  padding-top: 150px;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+  text-decoration: none;
+}
+
+/* setting color for h1 on index page */
+#hi {
+  color: #353b40;
+}
+
+.register-container {
+  padding: 50px;
+  padding-top: 0px;
+}
+
+.login-container {
+  padding: 50px;
+  color: white;
+}
+
+#login,
+.alert {
+  width: 400px;
+}
+
+#login {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+/* CSS grid for cards on index page, registration form, and profile editing */
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Desiging main cards on index page */
+#card {
+  background-color: #353b40;
+  color: white;
+  min-height: 150px;
+}
+
+#card:hover {
+  cursor: pointer;
+  border: solid white 2px;
+}
+
+/* Getting rid of link text decoration such as underlining */
+.grid-container a {
+  text-decoration: none;
+  color: #353b40;
+}
+
+/* styling for profile and account editing pages */
+.profile-container,
+.account-container {
+  margin: auto;
+  margin-top: 10px;
+  padding: 30px;
+  color: #353b40;
+  background-color: white;
+  border-radius: 15px;
+  width: 80%;
+  align-self: center;
+}
+
+/* FAQ css styling */
+
+.faq-container,
+.location-container {
+  margin: 25px;
+  padding: 25px;
+  background-color: white;
+  color: #353b40;
+  border-radius: 15px;
+}
+
+dl.faq button {
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 110%;
+  border: thin solid transparent;
+  background-color: transparent;
+  padding-left: 0.125em;
+}
+
+dl dd {
+  margin: 0;
+  padding: 0;
+  margin-left: 1.5em;
+}
+
+dl.faq .desc {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 110%;
+  display: none;
+  background-color: #fffedb;
+}
+
+dl.faq button:hover,
+dl.faq button:focus {
+  background-color: #eee;
+}
+
+dl.faq button:focus {
+  border-color: #630;
+}
+
+dl.faq button:hover {
+  text-decoration: underline;
+}
+
+dl.faq button:active {
+  background-color: #bbb;
+}
+
+dl.faq button[aria-expanded="false"]::before {
+  content: url("../images/right-arrow-brown.png");
+  padding-right: 0.35em;
+}
+
+dl.faq button[aria-expanded="true"]::before {
+  content: url("../images/down-arrow-brown.png");
+  padding-right: 0.35em;
+}
+
+/* map and location data page */
+
+#map-h4 {
+  padding: 0px 5px;
+  margin: 0px 5px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+}
+
+.mapboxgl-canvas {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 10px;
+}
+
+.news {
+  object-fit: cover;
+  height: 400px;
+  filter: brightness(75%) saturate(140%);
+}
+
+.carousel-inner a {
+  color: #d6c0bb;
+}
+
+.carousel-inner a:hover {
+  transition: 1s;
+  color: white;
+}

@@ -1,24 +1,39 @@
 var db = require("../models");
+const ObjectID = require("mongodb").ObjectID;
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get all Homes
+  app.get("/api/home", function(req, res) {
+    db.Home.findAll({}).then(function(dbHomes) {
+      res.json(dbHomes);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Create a new Home
+  app.post("/api/home", function(req, res) {
+    db.Home.create(req.body).then(function(dbHome) {
+      res.json(dbHome);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  // Delete an Home by id
+  app.delete("/api/home/:id", function(req, res) {
+    db.Home.destroy({ where: { id: req.params.id } }).then(function(dbHome) {
+      res.json(dbHome);
     });
   });
 };
+
+//saveing this for how to findALL within MongoDB
+// app.get("/api/users", function(req, res) {
+//   const users = req.app.locals.users;
+//   users
+//     .find()
+//     .limit(0)
+//     .toArray((err, results) => {
+//       if (err) {
+//         throw err;
+//       }
+//       res.json(results);
+//     });
+// });

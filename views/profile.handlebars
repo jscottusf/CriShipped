@@ -1,0 +1,30 @@
+{{> style}}
+{{> nav}}
+<div class="profile-container">
+    {{> messages}}
+
+    {{#if username }}
+    <h2>{{ firstName}} {{ lastName }}</h2>
+    <table class="table">
+        <tr>
+            <td>Username: </td>
+            <td>{{ username }}</td>
+        </tr>
+        <tr>
+            <td>Location:</td>
+            <td>{{ city }}, {{ state }} </td>
+        </tr>
+        <tr>
+            <td>Supplies I need:</td>
+            <td>{{ suppliesNeeded }} </td>
+        </tr>
+
+        <tr>
+            <td>Supplies I am offering:</td>
+            <td>{{ suppliesOffered}} </td>
+        </tr>
+
+    </table>
+    {{/if}}
+    <p><a href="/">Return to main menu</a></p>
+</div>
