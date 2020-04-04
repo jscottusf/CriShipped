@@ -12,15 +12,13 @@
     {{> messages}}
     <form id="register" action="/register" method="POST">
         <div class="grid-container">
-            <div><strong>Name</strong></div>
-            <div></div>
             <div class="form-group">
-                <label for="firstName">First:</label>
+                <label for="firstName">First name:</label>
                 <input type="text" value="{{ firstName }}" class="form-control" name="firstName" id="firstName"
                     required>
             </div>
             <div class="form-group">
-                <label for="lastName">Last:</label>
+                <label for="lastName">Last name:</label>
                 <input type="text" value="{{ lastName}}" class="form-control" name="lastName" id="lastName" required>
             </div>
         </div>
