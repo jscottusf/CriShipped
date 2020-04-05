@@ -3,11 +3,12 @@ module.exports = function(sequelize, DataTypes) {
     "Home",
     {
       card_title: DataTypes.STRING,
-      description: DataTypes.TEXT
+      url: DataTypes.STRING,
+      description: DataTypes.TEXT,
     },
     {
       freezeTableName: true,
-      timestamps: false
+      timestamps: false,
     }
   );
   return Home;
