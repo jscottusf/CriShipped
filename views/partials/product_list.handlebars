@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="pull-right">
-      {{'partials/pagination.handlebars'}}
+      {{> pagination}}
     </div>
   </div>
-  <hr class="product-list_upper-horizontal-line" style="margin-bottom: 25px;"/>
+  <hr class="product-list_upper-horizontal-line" style="margin-bottom: 25px;" />
   <div class="row">
     {{#if page_object.length}}
     {{#each product as |page_object|}}
     {{!-- {{#each page_object as |product|}} --}}
     {{!-- {{#for product in page_object}} --}}
     <div class="col-md-4">
-      {{'partials/product_list_item.handlebars'}}
+      {{> product_list_item}}
     </div>
     {{/each}}
     {{!-- {{/for}} --}}
@@ -27,10 +27,10 @@
     </div>
     {{/if}}
   </div>
-  <hr class="product-list_lower-horizontal-line" style="margin-bottom: 4px;"/>
+  <hr class="product-list_lower-horizontal-line" style="margin-bottom: 4px;" />
   <div class="row">
     <div class="pull-right">
-      {{'partials/pagination.handlebars'}}
+      {{> pagination}}
     </div>
   </div>
 </div>

@@ -37,6 +37,7 @@ require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 require("./routes/locationRoutes")(app);
 require("./routes/catalogueRoutes")(app);
+require("./routes/forumRoutes")(app);
 require("./routes/profileRoutes")(app);
 
 var syncOptions = { force: false };

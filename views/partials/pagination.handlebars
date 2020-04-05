@@ -4,7 +4,8 @@
     <div class="custom-pagination">
       <ul class="pagination">
         {{#if paginate.hasPreviousPages}}
-        <li><a href="{{paginate.href(true)}}">&laquo;</a></li> 
+        {{!-- Incorrect syntax --}}
+        {{!-- <li><a href="{{paginate.href(true)}}">&laquo;</a></li> --}}
         {{else}}
         <li class="disabled"><span>&laquo;</span></li>
         {{/if}}
@@ -22,8 +23,8 @@
         {{/if}}
         {{/each}}
         {{!-- {{/for}} --}}
-        {{#if paginate.hasNextPages(pageCount)}}
-        <li><a href="{{paginate.href()}}">&raquo;</a></li>
+        {{!-- {{#if paginate.hasNextPages(pageCount)}} --}}
+        {{!-- <li><a href="{{paginate.href()}}">&raquo;</a></li> --}}
         {{else}}
         <li class="disabled"><span>&raquo;</span></li>
         {{/if}}
@@ -31,4 +32,4 @@
     </div>
   </nav>
 </div>
-{{/if}}
+{{!-- {{/if}} --}}
