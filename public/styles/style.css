@@ -313,3 +313,7 @@ dl.faq button[aria-expanded="true"]::before {
   font-size: 16px;
   font-size: 1.1428571429em;
 }
+
+.forecast-icon img {
+  border-radius: 50%;
+}

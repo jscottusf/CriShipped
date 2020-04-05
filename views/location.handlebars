@@ -2,52 +2,64 @@
 {{> nav}}
 
 <div class="location-container bg-white">
-    <h4 id="map-h4">{{location.city}} Information</h4>
+    <h4 id="map-h4">{{ location.city }}, {{location.state}} Information</h4>
     <hr>
+    <span class="ml-3 mb-3"><strong>COVID-19 Pandemic </strong> <span class=" glyphicon glyphicon-forward p-3"></span>
+        {{ covidData.affectedCountries }} nations affected <span class=" glyphicon glyphicon-forward p-3"></span>
+        {{ covidData.cases }} total cases
+        <span class="glyphicon glyphicon-forward p-3"></span> {{ covidData.active }} active cases:
+        <span class="glyphicon glyphicon-forward p-3"></span> {{ covidData.deaths }} total deathes
+    </span>
     <div class="forecast-table">
         <div class="container">
             <div class="forecast-container">
+                {{#each sevenDayNWS}}
+                {{#if @first}}
                 <div class="today forecast">
                     <div class="forecast-header">
-                        <div class="day">Current</div>
+                        <div class="day">{{this.name}}</div>
                         <div class="date"></div>
+
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
-                        <div class="location">{{ weather.name }}</div>
+                        <div class="location">{{ this.detailedForecast }}</div>
                         <div class="degree">
-                            <div class="num">{{ weather.main.temp }}<sup>o</sup>F</div>
+                            <div class="num">{{ this.temperature }}<sup>o</sup>{{ this.temperatureUnit }}</div>
                             <div class="forecast-icon">
-                                <img src="images/icons/icon-1.svg" alt="" width=90>
+                                <img src="{{this.icon}}" alt="" width=90>
                             </div>
                         </div>
-                        <span><img src="images/icon-umberella.png" alt="">Humidity: {{ weather.main.humidity }}%</span>
-                        <span><img src="images/icon-wind.png" alt="">{{ weather.wind.speed }}km/h</span>
-                        <span><img src="images/icon-compass.png" alt=""></span>
+                        <span>{{ this.shortForecast }}</span>
+                        <span>{{ this.windSpeed }}km/h</span>
+                        <span>{{ this.windDirection }}</span>
                     </div>
                 </div>
+                {{else}}
+                {{#if this.isDaytime }}
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Tuesday</div>
+                        <div class="day">{{this.name}}</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
                         <div class="forecast-icon">
-                            <img src="images/icons/icon-3.svg" alt="" width=48>
+                            <img src="{{this.icon}}" alt="" width=48>
                         </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
+                        <div class="degree">{{this.temperature}}<sup>o</sup>{{ this.temperatureUnit }}
+                        </div>
+                        <small>{{#nextItem ../sevenDayNWS @index}} {{ this.temperature }}
+                            {{/nextItem}}<sup>o</sup></small>
                     </div>
                 </div>
+                {{/if}}
+                {{/if}}
+                {{/each}}
             </div>
         </div>
     </div>
+
     <div class="grid-container">
         <div class="col">
             <div id="map"></div>
-            <h5>COVID-19 Pandemic</h5>
-            <li>Nations affected: {{ covidData.affectedCountries }}</li>
-            <li>Total cases: {{ covidData.cases }}</li>
-            <li>Active cases: {{ covidData.active }}</li>
-            <li>Deathes: {{ covidData.deaths }}</li>
         </div>
         <div class="col">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -95,7 +107,7 @@
     </div>
 
     <script>
-        let city = "{{ location.city }}";
-        let state = "{{ location.state }}";
+        let long = "{{ longitude }}";
+        let lat = "{{ latitude }}";
     </script>
     <script src="/js/location.js"></script>

@@ -1,12 +1,22 @@
 const request = require("request");
 let axios = require("axios");
 const ObjectID = require("mongodb").ObjectID;
+var Handlebars = require("handlebars");
+
+Handlebars.registerHelper("inc", function(value, options) {
+  return parseInt(value) + 1;
+});
+
+Handlebars.registerHelper("nextItem", function(array, index, options) {
+  return options.fn(array[index + 1]);
+});
 
 module.exports = function(app) {
   app.get(
     "/location/:city",
     getLocation,
-    getWeather,
+    getGPS,
+    getNWSPoint,
     getForecast,
     getCovidData,
     getNews,
@@ -28,40 +38,49 @@ module.exports = function(app) {
     }
   }
 
-  // getGPS(req, res, next) {
-  //   const mapBoxApi = "pk.eyJ1IjoianNjb3R0dXNmIiwiYSI6ImNrNjFpbWEydjAxbjgzam9hZTgyd3hoN3QifQ.tUiC-b5WfvxUJuYp49Vqzw";
-  //   const city = req.location.city;
-  //   const state = req.location.state;
-  //   const url = ""
-  // }
+  function getGPS(req, res, next) {
+    const mapBoxApi =
+      "pk.eyJ1IjoianNjb3R0dXNmIiwiYSI6ImNrNjFpbWEydjAxbjgzam9hZTgyd3hoN3QifQ.tUiC-b5WfvxUJuYp49Vqzw";
+    var city = req.location.city;
+    var state = req.location.state;
+    var mapboxUrl =
+      "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+      encodeURI(city) +
+      "%20" +
+      encodeURI(state) +
+      ".json?access_token=" +
+      mapBoxApi;
+    var options = {
+      method: "GET",
+      url: mapboxUrl,
+      headers: {},
+    };
+    request(options, function(error, response) {
+      if (error) throw new Error(error);
+      var data = JSON.parse(response.body);
+      req.latitude = data.features[0].center[1];
+      req.longitude = data.features[0].center[0];
+      console.log(data.features[0].place_name);
+      console.log(req.latitude + " " + req.longitude);
+      next();
+    });
+  }
 
-  function getWeather(req, res, next) {
-    const city = req.location.city;
-    const appID = "64561e1bce2987193deea2fce1a779d4";
-    const weatherAPI =
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
-      city +
-      "&units=imperial&APPID=" +
-      appID;
-    axios.get(weatherAPI).then(function(response) {
-      console.log(response.data);
-      req.weather = response.data;
+  function getNWSPoint(req, res, next) {
+    const NWS =
+      "https://api.weather.gov/points/" + req.latitude + "," + req.longitude;
+    axios.get(NWS).then(function(response) {
+      req.forecastAPI = response.data.properties.forecast;
+      console.log(req.forecastAPI);
       next();
     });
   }
 
   function getForecast(req, res, next) {
-    const city = req.location.city;
-    const appID = "64561e1bce2987193deea2fce1a779d4";
-    const weatherAPI =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
-      city +
-      "&units=imperial&APPID=" +
-      appID +
-      "&cnt=7";
-    axios.get(weatherAPI).then(function(response) {
-      //console.log(response.data.list);
-      req.forecast = response.data.list;
+    const NWSforecast = req.forecastAPI;
+    axios.get(NWSforecast).then(function(response) {
+      req.sevenDayNWS = response.data.properties.periods;
+      console.log(req.sevenDayNWS);
       next();
     });
   }
