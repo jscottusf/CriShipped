@@ -15,29 +15,29 @@ var getPagedProducts = function(req, res) {
 /* Create a new product */
 var createProduct = function(req, res) {
   if (req.method === "POST") {
-    res.redirect("/");
+    res.redirect("/catalogue");
   } else {
-    res.redirect("/");
+    res.redirect("/catalogue");
   }
 };
 
 /* Get Product */
 var getProduct = function(req, res) {
-  res.redirect("/");
+  res.redirect("/catalogue");
 };
 
 /* Update Product */
 var editProduct = function(req, res) {
   if (req.method === "POST") {
-    res.redirect("/");
+    res.redirect("/catalogue");
   } else {
-    res.redirect("/");
+    res.redirect("/catalogue");
   }
 };
 
 /* Delete Product */
 var deleteProduct = function(req, res) {
-  res.redirect("/");
+  res.redirect("/catalogue");
 };
 
 var fetchPaginatedProducts = function(req, res) {
