@@ -209,17 +209,25 @@ dl.faq button[aria-expanded="true"]::before {
   position: relative;
   margin-top: auto;
   color: white;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.a-container {
+  padding: 0 15px;
 }
 .forecast-container {
-  width: 100%;
   background: #323544;
   display: table;
   table-layout: relative;
-  width: 100%;
   overflow: hidden;
   border-radius: 10px;
   margin-top: auto;
   margin-bottom: 50px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
 }
 .forecast-container .forecast {
   display: table-cell;
@@ -316,4 +324,22 @@ dl.faq button[aria-expanded="true"]::before {
 
 .forecast-icon img {
   border-radius: 50%;
+}
+
+/* Modal styling */
+
+.modal {
+  color: #353b40;
+}
+
+.modal-dialog {
+  max-width: 750px;
+}
+
+.modal-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  min-height: 200px;
+  justify-content: center;
+  background-color: rgb(16, 2, 42);
 }

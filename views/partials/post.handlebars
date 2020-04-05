@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body border border-dark rounded">
+                <div class="container bg-white pb-2">
+                    <div class="row">
+                        <div class="col-lg-12 top text-light rounded bg-dark p-2"> Add New Post</div>
+                    </div>
+                    <div class=".modal-header">
+                        <h4>Username: {{ userdata.username }} | Location: {{ userdata.city }},
+                            {{ userdata.state }}
+                        </h4>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="postTitle">Title:</label>
+                            <input placeholder="Looking for paper towels..." type="text" class="form-control"
+                                name="postTitle" id="postTitle">
+                            <br />
+                            <label for="postBody">Body:</label>
+                            <textarea
+                                placeholder="What are you looking for? What can you offer to help? Include your contact info such as email address and write about what supplies you are looking for and what you are willing to offer in exchange."
+                                class="form-control" rows="10" name="postBody" id="postBody"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <button type="submit" id="add-post" class="btn btn-outline-dark"
+                                    data-dismiss="modal">Add
+                                    Post</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
