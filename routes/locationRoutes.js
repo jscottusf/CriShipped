@@ -17,6 +17,7 @@ module.exports = function(app) {
     getLocation,
     getGPS,
     getNWSPoint,
+    getNowCast,
     getForecast,
     getCovidData,
     getNews,
@@ -71,7 +72,17 @@ module.exports = function(app) {
       "https://api.weather.gov/points/" + req.latitude + "," + req.longitude;
     axios.get(NWS).then(function(response) {
       req.forecastAPI = response.data.properties.forecast;
-      console.log(req.forecastAPI);
+      req.nowCastAPI = response.data.properties.forecastHourly;
+      //console.log(req.forecastAPI);
+      next();
+    });
+  }
+
+  function getNowCast(req, res, next) {
+    const NWSnowCast = req.nowCastAPI;
+    axios.get(NWSnowCast).then(function(response) {
+      req.nowCast = response.data.properties.periods[0];
+      //console.log(req.nowCast);
       next();
     });
   }
@@ -80,7 +91,7 @@ module.exports = function(app) {
     const NWSforecast = req.forecastAPI;
     axios.get(NWSforecast).then(function(response) {
       req.sevenDayNWS = response.data.properties.periods;
-      console.log(req.sevenDayNWS);
+      //console.log(req.sevenDayNWS);
       next();
     });
   }

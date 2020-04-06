@@ -16,27 +16,27 @@
     <div class="forecast-table">
         <div class="a-container">
             <div class="forecast-container">
-                {{#each sevenDayNWS}}
-                {{#if @first}}
                 <div class="today forecast">
                     <div class="forecast-header">
-                        <div class="day">{{this.name}}</div>
+                        <div class="day">Current weather in {{location.city}}</div>
                         <div class="date"></div>
 
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
-                        <div class="location">{{ this.detailedForecast }}</div>
+                        <div class="location">{{ nowCast.shortForecast }}</div>
                         <div class="degree">
-                            <div class="num">{{ this.temperature }}<sup>o</sup>{{ this.temperatureUnit }}</div>
+                            <div class="num">{{ nowCast.temperature }}<sup>o</sup>{{ nowCast.temperatureUnit }}</div>
                             <div class="forecast-icon">
-                                <img src="{{this.icon}}" alt="" width=90>
+                                <img src="{{nowCast.icon}}" alt="" width=90>
                             </div>
                         </div>
                         <span>{{ this.shortForecast }}</span>
-                        <span>{{ this.windSpeed }}km/h</span>
-                        <span>{{ this.windDirection }}</span>
+                        <span>{{ nowCast.windSpeed }}km/h</span>
+                        <span>{{ nowCast.windDirection }}</span>
                     </div>
                 </div>
+                {{#each sevenDayNWS}}
+                {{#if @first}}
                 {{else}}
                 {{#if this.isDaytime }}
                 <div class="forecast">
@@ -108,9 +108,10 @@
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        let long = "{{ longitude }}";
-        let lat = "{{ latitude }}";
-    </script>
-    <script src="/js/location.js"></script>
+<script>
+    let long = "{{ longitude }}";
+    let lat = "{{ latitude }}";
+</script>
+<script src="/js/location.js"></script>
