@@ -1,0 +1,21 @@
+{{> style}}
+{{>nav}}
+
+<div class="account-container">
+    {{> messages}}
+    <h2>Edit your post</h2>
+    <form action="/api/posts" method="PUT">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" value="{{ post.title }}" class="form-control" name="title" id="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="body">Post:</label>
+            <textarea type="text" class="form-control" rows="8" name="body" id="body"
+                required>{{ post.body }}</textarea>
+        </div>
+        <button class="btn btn-primary">Update</button>
+    </form>
+</div>
+<br><br><br><br>

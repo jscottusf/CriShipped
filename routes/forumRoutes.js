@@ -11,11 +11,32 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/forum/edit/:id", getUserinfo, getPost, checkMatch);
+  //   db.Post.findOne({
+  //     where: {
+  //       id: req.params.id,
+  //     },
+  //   }).then(function(dbPost) {
+  //     res.render("editpost", { post: dbPost });
+  //     console.log(post);
+  //   });
+  // });
+
   app.get("/forum/:city", getUserinfo, getCityPosts, getCities, renderForum);
 
   // Create a new Home
   app.post("/api/posts", function(req, res) {
     db.Post.create(req.body).then(function(data) {
+      res.json(data);
+    });
+  });
+
+  app.put("/api/posts", function(req, res) {
+    db.Post.update(req.body, {
+      where: {
+        id: req.body.id,
+      },
+    }).then(function(data) {
       res.json(data);
     });
   });
@@ -66,6 +87,28 @@ module.exports = function(app) {
     }
     req.cityList = cities;
     next();
+  }
+
+  function getPost(req, res, next) {
+    db.Post.findOne({
+      where: {
+        id: req.params.id,
+      },
+    }).then(function(dbPost) {
+      //res.render("editpost", { post: dbPost });
+      req.post = dbPost;
+      next();
+    });
+  }
+
+  function checkMatch(req, res, next) {
+    console.log(req.userdata.username + " " + req.post.user);
+    if (req.userdata.username === req.post.user) {
+      res.render("editpost", { ...req });
+    } else {
+      req.flash("error", "You can't edit other people's posts");
+      res.redirect("/forum");
+    }
   }
 
   function renderForum(req, res) {
