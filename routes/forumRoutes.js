@@ -39,6 +39,7 @@ module.exports = function(app) {
     var city = req.params.city;
     db.Post.findAll({
       where: { city: city },
+      order: [["id", "DESC"]],
     }).then(function(data) {
       req.post = data;
       next();
@@ -46,7 +47,9 @@ module.exports = function(app) {
   }
 
   function getPosts(req, res, next) {
-    db.Post.findAll({}).then(function(data) {
+    db.Post.findAll({
+      order: [["id", "DESC"]],
+    }).then(function(data) {
       req.post = data;
       next();
     });
@@ -57,18 +60,15 @@ module.exports = function(app) {
     var cities = [];
     for (var i = 0; i < allCities.length; i++) {
       var city = startCase(allCities[i].city);
-      console.log(allCities[i].city);
       if (cities.indexOf(city) === -1) {
         cities.push(city);
       }
     }
     req.cityList = cities;
-    console.log(req.cityList);
     next();
   }
 
   function renderForum(req, res) {
-    //console.log(req.examples[0].text);
     res.render("forum", { ...req });
   }
 };
