@@ -11,22 +11,31 @@ const paginate = require("express-paginate");
 const path = require("path");
 const bodyParser = require("body-parser");
 //const fs = require("fs");
-var nunjucks = require('nunjucks');
+var cons = require('consolidate'),
+  nunjucks = require('nunjucks');
 const handlebars = require("handlebars"),
   layouts = require("handlebars-layouts");
 
-layouts.register(handlebars);
+// assign the nunjucks engine to .html files
+app.engine('html', cons.nunjucks);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
 
-// View Engine SetUp
-nunjucks.configure(
-  ['views',
-    'views/cataloguedm',
-    'views/partials',
-  ],
-  {
-    autoescape: true,
-    express: app
-  });
+// // View Engine SetUp
+// cons.requires.nunjucks = nunjucks.configure(
+//   ['views',
+//     'views/cataloguedm',
+//     'views/partials',
+//   ],
+//   {
+//     autoescape: true,
+//     express: app
+//   });
+// Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+layouts.register(handlebars);
 
 // Middleware
 app.use(bodyParser.json());
@@ -39,9 +48,6 @@ app.use(express.static(path.join(__dirname, "public")));
 //Pagination Middleware
 app.use(paginate.middleware(9, 20));
 
-// Handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
 
 // Routes
 require("./config/mongo")(app);
