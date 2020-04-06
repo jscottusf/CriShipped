@@ -11,10 +11,22 @@ const paginate = require("express-paginate");
 const path = require("path");
 const bodyParser = require("body-parser");
 //const fs = require("fs");
+var nunjucks = require('nunjucks');
 const handlebars = require("handlebars"),
   layouts = require("handlebars-layouts");
 
 layouts.register(handlebars);
+
+// View Engine SetUp
+nunjucks.configure(
+  ['views',
+    'views/cataloguedm',
+    'views/partials',
+  ],
+  {
+    autoescape: true,
+    express: app
+  });
 
 // Middleware
 app.use(bodyParser.json());
