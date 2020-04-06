@@ -5,10 +5,11 @@
       <ul class="pagination">
         {{#if paginate.hasPreviousPages}}
         {{!-- Incorrect syntax --}}
-        {{!-- <li><a href="{{paginate.href(true)}}">&laquo;</a></li> --}}
+        <li><a href="\{{paginate.href(true)}}">&laquo;</a></li>
         {{else}}
         <li class="disabled"><span>&laquo;</span></li>
         {{/if}}
+
         {{#each page as |pages|}}
         {{!-- {{#each pages as |page|}} --}}
         {{!-- {{#for page in pages}} --}}
@@ -24,7 +25,7 @@
         {{/each}}
         {{!-- {{/for}} --}}
         {{!-- {{#if paginate.hasNextPages(pageCount)}} --}}
-        {{!-- <li><a href="{{paginate.href()}}">&raquo;</a></li> --}}
+        <li><a href="\{{paginate.href()}}">&raquo;</a></li>
         {{else}}
         <li class="disabled"><span>&raquo;</span></li>
         {{/if}}
@@ -32,4 +33,3 @@
     </div>
   </nav>
 </div>
-{{!-- {{/if}} --}}

@@ -77,7 +77,6 @@ var fetchPaginatedProducts = function(req, res) {
     });
 };
 
-// pages: res.locals.paginate.getArrayPages(5, pageCount, req.query.page),
 
 /* Exports all methods */
 module.exports = {
