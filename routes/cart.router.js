@@ -4,6 +4,6 @@ var express = require('express');
 var router = express.Router();
 
 /* Cart Routes */
-router.all('/cart', cartController.cartDetail);
+router.all('/', cartController.cartDetail);
 
 module.exports = router;
