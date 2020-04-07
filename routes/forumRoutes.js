@@ -32,6 +32,7 @@ module.exports = function(app) {
   });
 
   app.put("/api/posts", function(req, res) {
+    console.log(req.body);
     db.Post.update(req.body, {
       where: {
         id: req.body.id,
