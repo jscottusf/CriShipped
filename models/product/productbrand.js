@@ -4,12 +4,14 @@ module.exports = (sequelize, DataTypes) => {
     "ProductBrand",
     {
       ProductId: DataTypes.INTEGER,
-      BrandId: DataTypes.INTEGER
+      BrandId: DataTypes.INTEGER,
     },
     {}
   );
   ProductBrand.associate = function(models) {
-    // associations can be defined here
+    ProductBrand.hasMany(models.Brand, {
+      onDelete: "cascade",
+    });
   };
   return ProductBrand;
 };

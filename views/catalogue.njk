@@ -76,21 +76,22 @@
         <div>
           {% include 'partials/brand.njk' %}
         </div>
+        <div class="py-2">
+        <a href="/catalogue"><button class="btn btn-primary">Refresh Catalogue</button></a>
+        </div>
       </div>
+      
+      {# /catalogue/ #}
       <div class="col-md-9 {% if page_object %}index__product-wrapper--has-pages{%else%}index__product-wrapper--no-pages{% endif%}">
         {% include 'partials/product_list.njk' %}
       </div>
     </div>
   </div>
-
-
-
-<hr />
-<footer>
-  <p class="layout_copyright">&copy; {{year}} - CriShipped</p>
-</footer>
-
-
 </div>
 <br><br><br><br>
+<footer class="footer">
+    <div class="footer-container">
+        <span class="text-muted">CriShipped &copy; 2020</span>
+    </div>
+</footer>
 <script src="/js/catalogue.js"></script>
