@@ -3,34 +3,29 @@ const ObjectID = require("mongodb").ObjectID;
 const startCase = require("lodash.startcase");
 
 module.exports = function(app) {
+  //get the forum loaded
   app.get("/forum", getUserinfo, getPosts, getCities, renderForum);
-
+  //get api off all posts...public for testing but needs to be made private
   app.get("/api/posts", function(req, res) {
     db.Post.findAll({}).then(function(data) {
       res.json(data);
     });
   });
 
+  //got to edit post page
   app.get("/forum/edit/:id", getUserinfo, getPost, checkMatch);
-  //   db.Post.findOne({
-  //     where: {
-  //       id: req.params.id,
-  //     },
-  //   }).then(function(dbPost) {
-  //     res.render("editpost", { post: dbPost });
-  //     console.log(post);
-  //   });
-  // });
 
+  //filter posts by city
   app.get("/forum/:city", getUserinfo, getCityPosts, getCities, renderForum);
 
-  // Create a new Home
+  // Create a new Post
   app.post("/api/posts", function(req, res) {
     db.Post.create(req.body).then(function(data) {
       res.json(data);
     });
   });
 
+  //edit an existing post
   app.put("/api/posts", function(req, res) {
     console.log(req.body);
     db.Post.update(req.body, {
@@ -42,6 +37,7 @@ module.exports = function(app) {
     });
   });
 
+  //get the current logged in user data from Mongo
   function getUserinfo(req, res, next) {
     if (!req.isAuthenticated()) {
       req.flash("error", "You must be logged in to view forum");
@@ -57,6 +53,7 @@ module.exports = function(app) {
     }
   }
 
+  //get all posts by city in decscending order
   function getCityPosts(req, res, next) {
     var city = req.params.city;
     db.Post.findAll({
@@ -68,6 +65,7 @@ module.exports = function(app) {
     });
   }
 
+  //get all posts in descending order
   function getPosts(req, res, next) {
     db.Post.findAll({
       order: [["id", "DESC"]],
@@ -77,6 +75,7 @@ module.exports = function(app) {
     });
   }
 
+  //filter through cities for selector
   function getCities(req, res, next) {
     var allCities = req.post;
     var cities = [];
@@ -90,6 +89,7 @@ module.exports = function(app) {
     next();
   }
 
+  //get the post which is being edited
   function getPost(req, res, next) {
     db.Post.findOne({
       where: {
@@ -102,6 +102,7 @@ module.exports = function(app) {
     });
   }
 
+  //verify that user is editing their own post
   function checkMatch(req, res, next) {
     console.log(req.userdata.username + " " + req.post.user);
     if (req.userdata.username === req.post.user) {
@@ -112,6 +113,7 @@ module.exports = function(app) {
     }
   }
 
+  //render all to forum.handlebars
   function renderForum(req, res) {
     res.render("forum", { ...req });
   }
