@@ -40,7 +40,7 @@ var API = {
   },
   deleteExample: function(id) {
     return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/posts/" + id,
       type: "DELETE",
     });
   },
@@ -69,23 +69,15 @@ var handleFormSubmit = function(event) {
   postBody.val("");
 };
 
-// function handleEdit() {
-//   var id = $(this).attr("data-id");
-//   var editTitle = "edit-postTitle-" + id;
-//   var editBody = "edit-postBody-" + id;
-//   var post = {
-//     id: id,
-//     title: editTitle.val().trim(),
-//     body: editBody.val().trim(),
-//   };
-
-//   console.log(post);
-//   API.editExample(post).then(function() {
-//     location.reload();
-//   });
-// }
-
 $submitBtn.on("click", handleFormSubmit);
+$(".dropleft").on("click", "#delete", function() {
+  console.log("click");
+  var idToDelete = $(this).attr("data-id");
+  API.deleteExample(idToDelete).then(function() {
+    window.location.href = "/forum";
+  });
+});
+
 // $("#edit-button").on("click", handleEdit);
 postLocation.on("change", function() {
   var param = $(this).val();
