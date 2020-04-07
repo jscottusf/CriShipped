@@ -8,7 +8,7 @@ var cartDetail = function (req, res) {
     cartService.removeFromCart(req).then(() => {
       cartService.getCartItems(req).then(items => {
         res.render(
-          'cart_detail',
+          'cart_detail.njk',
           {
             title: 'Cart Detail',
             year: date.getFullYear(),
@@ -19,7 +19,7 @@ var cartDetail = function (req, res) {
   } else {
     cartService.getCartItems(req).then(items => {
       res.render(
-        'cart_detail',
+        'cart_detail.njk',
         {
           title: 'Cart Detail',
           year: date.getFullYear(),
