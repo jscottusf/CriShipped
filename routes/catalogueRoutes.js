@@ -1,10 +1,15 @@
 var catalogueController = require("../controllers/catalogue.controller");
 
 module.exports = function(app) {
-  app.get("/catalogue", catalogueController.getPagedProducts);
+  app.get(
+    "/catalogue",
+    checkAuthenticated,
+    catalogueController.getPagedProducts
+  );
 
   app.get(
     "/catalogue/:category_slug/:brand_slug",
+    checkAuthenticated,
     catalogueController.getPagedProducts
   );
 
@@ -19,4 +24,12 @@ module.exports = function(app) {
 
   /* Delete Product. */
   app.all("/product/:id/delete", catalogueController.deleteProduct);
+
+  function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+
+    res.redirect("/login");
+  }
 };
