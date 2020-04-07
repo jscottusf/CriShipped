@@ -5,9 +5,9 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = proacess.env.PORT || 8080;
 const paginate = require("express-paginate");
-//const session = require("express-session");
+const session = require("express-session");
 const path = require("path");
 const bodyParser = require("body-parser");
 //const fs = require("fs");
@@ -38,6 +38,13 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Pagination Middleware
 app.use(paginate.middleware(9, 20));
+
+app.use(session({
+  secret: '95371e2f-a487-4e22-a9e2-8b6356b85453',
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
 
 
 // Routes
