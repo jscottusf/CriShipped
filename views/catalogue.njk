@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+
 
 {% block content %}
 
@@ -8,14 +8,14 @@
       <h4 class="index__filter-title">Filter By</h4>
       <hr />
       <div>
-        {% include 'partials/category.html' %}
+        {% include 'partials/category.njk' %}
       </div>
       <div>
-        {% include 'partials/brand.html' %}
+        {% include 'partials/brand.njk' %}
       </div>
     </div>
     <div class="col-md-9 {% if page_object %}index__product-wrapper--has-pages{%else%}index__product-wrapper--no-pages{% endif%}">
-      {% include 'partials/product_list.html' %}
+      {% include 'partials/product_list.njk' %}
     </div>
   </div>
 </div>

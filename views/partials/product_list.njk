@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="pull-right">
-      {% include 'partials/pagination.html'%}
+      {% include 'partials/pagination.njk'%}
     </div>
   </div>
   <hr class="product-list__upper-horizontal-line" style="margin-bottom: 25px;"/>
@@ -9,7 +9,7 @@
     {%if page_object.length%}
     {% for product in page_object %}
     <div class="col-md-4">
-      {% include 'partials/product_list_item.html'%}
+      {% include 'partials/product_list_item.njk'%}
     </div>
     {% endfor %}
 
@@ -27,7 +27,7 @@
   <hr class="product-list__lower-horizontal-line" style="margin-bottom: 4px;"/>
   <div class="row">
     <div class="pull-right">
-      {% include 'partials/pagination.html'%}
+      {% include 'partials/pagination.njk'%}
     </div>
   </div>
 </div>
