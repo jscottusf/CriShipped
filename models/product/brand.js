@@ -7,14 +7,17 @@ module.exports = (sequelize, DataTypes) => {
       slug: DataTypes.STRING,
       description: DataTypes.STRING,
       brandStatus: { type: DataTypes.ENUM, values: ["active", "inactive"] },
-      isDeleted: DataTypes.BOOLEAN
+      isDeleted: DataTypes.BOOLEAN,
     },
     {}
   );
   Brand.associate = function(models) {
     // associations can be defined here
     Brand.belongsToMany(models.Product, {
-      through: models.ProductBrand
+      through: models.ProductBrand,
+      // foreignKey: {
+      //   allowNull: false,
+      // },
     });
   };
   return Brand;
