@@ -11,8 +11,20 @@ const paginate = require("express-paginate");
 const path = require("path");
 const bodyParser = require("body-parser");
 //const fs = require("fs");
+var cons = require('consolidate'),
+  nunjucks = require('nunjucks');
 const handlebars = require("handlebars"),
   layouts = require("handlebars-layouts");
+
+// assign the nunjucks engine to .html files
+app.engine('njk', cons.nunjucks);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+
+
+// Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 layouts.register(handlebars);
 
@@ -27,9 +39,6 @@ app.use(express.static(path.join(__dirname, "public")));
 //Pagination Middleware
 app.use(paginate.middleware(9, 20));
 
-// Handlebars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
 
 // Routes
 require("./config/mongo")(app);
