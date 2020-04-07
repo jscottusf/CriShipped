@@ -21,19 +21,7 @@ app.engine('njk', cons.nunjucks);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-// View Engine SetUp
-// cons.requires.nunjucks = nunjucks.configure(
-//   ['views/catalogue.njk',
-//     'views/partials/brand.njk',
-//     'views/partials/category.njk',
-//     'views/partials/pagination.njk',
-//     'views/partials/product_list.njk',
-//     'views/partials/product_list_item.njk',
-//   ],
-//   {
-//     autoescape: true,
-//     express: app
-//   });
+
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
