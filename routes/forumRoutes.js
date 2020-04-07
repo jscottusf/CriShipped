@@ -37,6 +37,19 @@ module.exports = function(app) {
     });
   });
 
+  // DELETE route for deleting posts
+  app.delete("/api/posts/:id", getUserinfo, getPost, checkMatchDelete);
+
+  // function(req, res) {
+  //   db.Post.destroy({
+  //     where: {
+  //       id: req.params.id,
+  //     },
+  //   }).then(function(dbPost) {
+  //     res.json(dbPost);
+  //   });
+  // });
+
   //get the current logged in user data from Mongo
   function getUserinfo(req, res, next) {
     if (!req.isAuthenticated()) {
@@ -109,6 +122,22 @@ module.exports = function(app) {
       res.render("editpost", { ...req });
     } else {
       req.flash("error", "You can't edit other people's posts");
+      res.redirect("/forum");
+    }
+  }
+
+  function checkMatchDelete(req, res) {
+    if (req.userdata.username === req.post.user) {
+      db.Post.destroy({
+        where: {
+          id: req.params.id,
+        },
+      }).then(function(dbPost) {
+        res.json(dbPost);
+      });
+    } else {
+      res.json("nope");
+      req.flash("error", "You can't delete other people's posts");
       res.redirect("/forum");
     }
   }
