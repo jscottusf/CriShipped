@@ -1,3 +1,3 @@
-INSERT INTO ProductCategories(CategoryId) VALUES(7);
+INSERT INTO ProductCategories(CategoryId) VALUES(8);
 
-INSERT INTO ProductBrands(BrandId) VALUES(6);
+INSERT INTO ProductBrands(BrandId) VALUES(2);
