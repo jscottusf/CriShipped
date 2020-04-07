@@ -5,11 +5,12 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const db = require("./models");
 const app = express();
-const PORT = proacess.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 const paginate = require("express-paginate");
 const session = require("express-session");
 const path = require("path");
 const bodyParser = require("body-parser");
+var contextProcessor = require('./middlewares/context.processor.js');
 //const fs = require("fs");
 var cons = require('consolidate'),
   nunjucks = require('nunjucks');
@@ -45,6 +46,9 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+//Make the cart parameters available to the templates
+app.use(contextProcessor.localContext);
 
 
 // Routes
