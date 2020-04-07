@@ -1,6 +1,7 @@
 'use strict';
-var catalogueRouter = require("./catalogue/catalogue.router.js");
-var cartRouter = require("./cart/cart.router.js");
+var catalogueRouter = require("../controllers/cart.controller");
+
+var cartRouter = require("../controllers/cart.controller");
 // var checkoutRouter = require("./checkout/checkout.router.js");
 
 var register = function (app) {
