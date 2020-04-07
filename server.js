@@ -34,8 +34,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(__dirname + '/public'));
+// app.use(express.static("public"));
+// app.use(express.static(path.join(__dirname, "public")));
+
 
 //Pagination Middleware
 app.use(paginate.middleware(9, 20));
