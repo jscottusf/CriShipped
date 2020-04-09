@@ -18,21 +18,21 @@ var getPagedProducts = function (req, res) {
 /* Create a new product */
 var createProduct = function (req, res) {
   if (req.method === 'POST') {
-    res.redirect('/catalogue.');
+    res.redirect('/catalogue');
   } else {
-    res.redirect('/catalogue.');
+    res.redirect('/catalogue');
   }
 };
 
 /* Get Product */
 var getProduct = function (req, res) {
-  res.redirect('/catalogue.');
+  res.redirect('/catalogue');
 };
 
 /* Update Product */
 var editProduct = function (req, res) {
   if (req.method === 'POST') {
-    res.redirect('/catalogue.');
+    res.redirect('/catalogue');
   } else {
     res.redirect('/catalogue');
   }
