@@ -1,0 +1,43 @@
+{{> style}}
+{{>nav}}
+
+<div class="account-container">
+    {{> messages}}
+    <button type="button" id="post-button" class="btn btn-dark" data-toggle="modal" data-target="#commentModal">
+        + Add Comment
+    </button>
+    <a href="/forum">
+        <button type="button" id="post-button" class="btn btn-outline-dark">
+            Back to Forum
+        </button>
+    </a>
+    <h2>{{post.user}}'s post </h2>
+    <div class="post-card">
+        <div class="post-card-header">
+            <div class="row">
+                <div class="col-10">
+                    <div>Posted by <a href="/users/{{post.user}}" target="_blank">{{ post.user }}</a> |
+                        {{ post.city }}</div>
+                    <h5>{{ post.title }}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="post-card-body">
+            <p>{{ post.body }}</p>
+            <h5>Comments:</h5>
+            {{#each post.Comments }}
+            <hr>
+            <div><a href="/users/{{ this.user }}" target="_blank">{{this.user}}:</a> {{ this.body}}</div>
+            {{/each }}
+            <hr>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+{{> comment }}
+
+<script>
+    var username = "{{ userdata.username }}";
+    var postId = "{{ post.id }}";
+</script>
+<script src="/js/postComments.js"></script>
