@@ -30,5 +30,12 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
 
+  Post.associate = function(models) {
+    // associations can be defined here
+    Post.hasMany(models.Comment, {
+      onDelete: "cascade",
+    });
+  };
+
   return Post;
 };

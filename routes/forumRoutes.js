@@ -40,16 +40,6 @@ module.exports = function(app) {
   // DELETE route for deleting posts
   app.delete("/api/posts/:id", getUserinfo, getPost, checkMatchDelete);
 
-  // function(req, res) {
-  //   db.Post.destroy({
-  //     where: {
-  //       id: req.params.id,
-  //     },
-  //   }).then(function(dbPost) {
-  //     res.json(dbPost);
-  //   });
-  // });
-
   //get the current logged in user data from Mongo
   function getUserinfo(req, res, next) {
     if (!req.isAuthenticated()) {
@@ -72,6 +62,7 @@ module.exports = function(app) {
     db.Post.findAll({
       where: { city: city },
       order: [["id", "DESC"]],
+      include: [db.Comment],
     }).then(function(data) {
       req.post = data;
       next();
@@ -82,6 +73,7 @@ module.exports = function(app) {
   function getPosts(req, res, next) {
     db.Post.findAll({
       order: [["id", "DESC"]],
+      include: [db.Comment],
     }).then(function(data) {
       req.post = data;
       next();
@@ -108,6 +100,7 @@ module.exports = function(app) {
       where: {
         id: req.params.id,
       },
+      include: [db.Comment],
     }).then(function(dbPost) {
       //res.render("editpost", { post: dbPost });
       req.post = dbPost;
@@ -126,7 +119,7 @@ module.exports = function(app) {
     }
   }
 
-  function checkMatchDelete(req, res) {
+  function checkMatchDelete(req, res, err) {
     if (req.userdata.username === req.post.user) {
       db.Post.destroy({
         where: {
@@ -136,7 +129,7 @@ module.exports = function(app) {
         res.json(dbPost);
       });
     } else {
-      res.json("nope");
+      res.json(err);
       req.flash("error", "You can't delete other people's posts");
       res.redirect("/forum");
     }

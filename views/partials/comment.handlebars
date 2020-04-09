@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body border border-dark rounded">
+                <div class="container bg-white pb-2">
+                    <div class="row">
+                        <div class="col-lg-12 top text-light rounded bg-dark p-2"> Add New Post</div>
+                    </div>
+                    <div class=".modal-header">
+                        <h4>Comment by {{ userdata.username }} | {{ userdata.city }},
+                            {{ userdata.state }}
+                        </h4>
+                    </div>
+                    <form>
+                        <div class="form-group">
+                            <label for="postBody">Body:</label>
+                            <textarea placeholder="Add comment here" class="form-control" rows="5" name="commentBody"
+                                id="commentBody"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <button type="submit" id="add-comment" class="btn btn-outline-dark"
+                                    data-dismiss="modal">Add
+                                    Comment</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
