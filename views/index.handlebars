@@ -1,7 +1,19 @@
 {{> style}}
 {{> nav}}
+
 <div class="container">
-    <h1 id="hi">Hi {{ firstName }}</h1>
+    <h1 id="hi">Hi {{ firstName }} <i class="fas fa-bell" id="bell" data-toggle="popover" title="Notifications"
+            data-content="
+            {{#each post}}
+            {{#each Comments}}
+            {{#ifCond this.user ../this.user}}
+            {{else}}
+            <div><a href=/users/{{this.user}}> {{this.user}}</a> replied to your post <a href=/forum/post/{{../this.id}}>{{../this.title}}</a></div>
+            {{/ifCond}}
+            {{/each}}
+            {{/each}}
+    " data-html="true"></i>
+    </h1>
     <div class="grid-container">
         <a href="/myaccount">
             <div class="card mt-4" id="card">
@@ -45,3 +57,9 @@
     </div>
 </div>
 <br><br><br><br>
+
+<script>
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    });
+</script>
