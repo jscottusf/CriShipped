@@ -30,8 +30,8 @@ module.exports = function(app) {
     console.log(req.body);
     db.Post.update(req.body, {
       where: {
-        id: req.body.id,
-      },
+        id: req.body.id
+      }
     }).then(function(data) {
       res.json(data);
     });
@@ -62,7 +62,7 @@ module.exports = function(app) {
     db.Post.findAll({
       where: { city: city },
       order: [["id", "DESC"]],
-      include: [db.Comment],
+      include: [db.Comment]
     }).then(function(data) {
       req.post = data;
       next();
@@ -73,7 +73,7 @@ module.exports = function(app) {
   function getPosts(req, res, next) {
     db.Post.findAll({
       order: [["id", "DESC"]],
-      include: [db.Comment],
+      include: [db.Comment]
     }).then(function(data) {
       req.post = data;
       next();
@@ -98,9 +98,9 @@ module.exports = function(app) {
   function getPost(req, res, next) {
     db.Post.findOne({
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-      include: [db.Comment],
+      include: [db.Comment]
     }).then(function(dbPost) {
       //res.render("editpost", { post: dbPost });
       req.post = dbPost;
@@ -123,8 +123,8 @@ module.exports = function(app) {
     if (req.userdata.username === req.post.user) {
       db.Post.destroy({
         where: {
-          id: req.params.id,
-        },
+          id: req.params.id
+        }
       }).then(function(dbPost) {
         res.json(dbPost);
       });

@@ -2,9 +2,24 @@ const authUtils = require("../utils/auth");
 const db = require("../models");
 const passport = require("passport");
 const ObjectID = require("mongodb").ObjectID;
+var Handlebars = require("handlebars");
+
+Handlebars.registerHelper("ifCond", function(v1, v2, options) {
+  if (v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 module.exports = function(app) {
-  app.get("/", checkAuthenticated, getUsername, getExamples, renderIndex);
+  app.get(
+    "/",
+    checkAuthenticated,
+    getUsername,
+    getExamples,
+    getNotifications,
+    renderIndex
+  );
 
   app.get("/login", checkNotAuthenticated, (req, res) => {
     res.render("login");
@@ -85,6 +100,7 @@ module.exports = function(app) {
       req.firstName = results.firstName;
       req.lastName = results.lastName;
       req.username = results.username;
+      req.slug = results.slug;
       req.city = results.city;
       req.state = results.state;
       next();
@@ -93,8 +109,18 @@ module.exports = function(app) {
 
   function getExamples(req, res, next) {
     db.Home.findAll({}).then(function(data) {
-      //console.log(dbExamples);
       req.home = data;
+      next();
+    });
+  }
+
+  function getNotifications(req, res, next) {
+    db.Post.findAll({
+      where: { user: req.username },
+      order: [["id", "DESC"]],
+      include: [db.Comment]
+    }).then(function(dbPost) {
+      req.post = dbPost;
       next();
     });
   }
@@ -107,7 +133,10 @@ module.exports = function(app) {
       username: req.username,
       city: req.city,
       state: req.state,
-      cards: req.home
+      cards: req.home,
+      slug: req.slug,
+      post: req.post,
+      comments: req.comments
     });
   }
 };

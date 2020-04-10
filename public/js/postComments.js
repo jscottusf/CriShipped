@@ -6,44 +6,45 @@ var API = {
   saveExample: function(post) {
     return $.ajax({
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/comments",
-      data: JSON.stringify(post),
+      data: JSON.stringify(post)
     });
   },
   editExample: function(post) {
     return $.ajax({
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       type: "PUT",
       url: "api/comments/",
-      data: JSON.stringify(post),
+      data: JSON.stringify(post)
     });
   },
   getExamples: function() {
     return $.ajax({
       url: "api/comments",
-      type: "GET",
+      type: "GET"
     });
   },
   deleteExample: function(id) {
     return $.ajax({
       url: "api/comments/" + id,
-      type: "DELETE",
+      type: "DELETE"
     });
-  },
+  }
 };
 
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var comment = {
+    title: title,
     body: commentBody.val().trim(),
     user: username,
-    PostId: postId,
+    PostId: postId
   };
 
   if (!comment.body) {
