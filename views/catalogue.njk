@@ -56,6 +56,12 @@
             </li>
         </ul>
     </div>
+    <div class="navbar-collapse collapse navbar-right layout__cart-wrapper">
+        <ul class="nav navbar-nav">
+            <li>{% include 'partials/cart_summary_widget.njk' %}</li>
+        </ul>
+    </div>
+
     <form action="/logout?_method=DELETE" method="POST">
         <button class="btn btn-sm btn-danger m-0" type="submit">
             Log Out

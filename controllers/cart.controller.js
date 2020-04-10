@@ -1,6 +1,5 @@
 'use strict';
 var cartService = require('../services/cart.service.js');
-
 var date = new Date();
 
 /* Cart Detail */
@@ -9,7 +8,7 @@ var cartDetail = function (req, res) {
     cartService.removeFromCart(req).then(() => {
       cartService.getCartItems(req).then(items => {
         res.render(
-          'cart_detail.njk',
+          'cart_detail',
           {
             title: 'Cart Detail',
             year: date.getFullYear(),
@@ -20,7 +19,7 @@ var cartDetail = function (req, res) {
   } else {
     cartService.getCartItems(req).then(items => {
       res.render(
-        'cart_detail.njk',
+        'cart_detail',
         {
           title: 'Cart Detail',
           year: date.getFullYear(),
