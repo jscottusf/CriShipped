@@ -1,6 +1,15 @@
 const db = require("../models");
 const ObjectID = require("mongodb").ObjectID;
 const startCase = require("lodash.startcase");
+var Handlebars = require("handlebars");
+var moment = require("moment");
+moment().format();
+
+Handlebars.registerHelper("prettifyDate", function(timestamp) {
+  return moment(new Date(timestamp)).fromNow();
+});
+
+Handlebars.registerHelper("paginate", require("handlebars-paginate"));
 
 module.exports = function(app) {
   //get the forum loaded
@@ -137,6 +146,12 @@ module.exports = function(app) {
 
   //render all to forum.handlebars
   function renderForum(req, res) {
-    res.render("forum", { ...req });
+    res.render("forum", {
+      ...req,
+      pagination: {
+        page: 1,
+        pageCount: 5
+      }
+    });
   }
 };

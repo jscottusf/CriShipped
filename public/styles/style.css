@@ -423,15 +423,25 @@ dl.faq button[aria-expanded="true"]::before {
 }
 
 #bell:hover {
+  transition: 0.25s;
   font-size: 41px;
 }
 
 .popover {
   max-width: 100%;
-  width: 500px;
+  width: 700px;
 }
 
 .popover-header {
   background-color: #353b40;
   color: white;
+}
+
+.fa-times-circle {
+  float: right;
+  cursor: pointer;
+}
+.fa-times-circle:hover {
+  transition: 0.25s;
+  font-size: 15px;
 }

@@ -16,6 +16,22 @@ module.exports = function(app) {
     });
   });
 
+  //update post as seen or unseen
+  app.put("/api/comments/:id", function(req, res) {
+    db.Comment.update(
+      {
+        seen: req.body.seen
+      },
+      {
+        where: {
+          id: req.params.id
+        }
+      }
+    ).then(function() {
+      res.end();
+    });
+  });
+
   // Delete an Home by id
   app.delete("/api/home/:id", function(req, res) {
     db.Home.destroy({ where: { id: req.params.id } }).then(function(dbHome) {

@@ -27,8 +27,8 @@
                 <div class="post-card-header">
                     <div class="row">
                         <div class="col-10">
-                            <div>Posted by <a href="/users/{{this.user}}" target="_blank">{{ this.user }}</a> |
-                                {{ this.city }}</div>
+                            <div>Posted by <a href="/users/{{this.user}}" target="_blank">{{ this.user }}</a>
+                                {{ prettifyDate this.createdAt }} | {{ this.city }}</div>
                             <h5>{{ this.title }}</h5>
                         </div>
                         <div class="col">

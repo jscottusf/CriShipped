@@ -1,5 +1,12 @@
 const db = require("../models");
 const ObjectID = require("mongodb").ObjectID;
+var Handlebars = require("handlebars");
+var moment = require("moment");
+moment().format();
+
+Handlebars.registerHelper("prettifyDate", function(timestamp) {
+  return moment(new Date(timestamp)).fromNow();
+});
 
 module.exports = function(app) {
   //get the forum loaded
@@ -34,9 +41,9 @@ module.exports = function(app) {
   function getPost(req, res, next) {
     db.Post.findOne({
       where: {
-        id: req.params.id,
+        id: req.params.id
       },
-      include: [db.Comment],
+      include: [db.Comment]
     }).then(function(dbPost) {
       req.post = dbPost;
       next();
