@@ -3,6 +3,12 @@ const db = require("../models");
 const passport = require("passport");
 const ObjectID = require("mongodb").ObjectID;
 var Handlebars = require("handlebars");
+var moment = require("moment");
+moment().format();
+
+Handlebars.registerHelper("prettifyDate", function(timestamp) {
+  return moment(new Date(timestamp)).fromNow();
+});
 
 Handlebars.registerHelper("ifCond", function(v1, v2, options) {
   if (v1 === v2) {
@@ -17,7 +23,7 @@ module.exports = function(app) {
     checkAuthenticated,
     getUsername,
     getExamples,
-    getNotifications,
+    getComments,
     renderIndex
   );
 
@@ -114,13 +120,14 @@ module.exports = function(app) {
     });
   }
 
-  function getNotifications(req, res, next) {
-    db.Post.findAll({
-      where: { user: req.username },
+  function getComments(req, res, next) {
+    db.Comment.findAll({
+      where: { poster: req.username },
       order: [["id", "DESC"]],
-      include: [db.Comment]
-    }).then(function(dbPost) {
-      req.post = dbPost;
+      include: [db.Post]
+    }).then(function(dbComment) {
+      //console.log(dbComment);
+      req.comments = dbComment;
       next();
     });
   }
@@ -135,7 +142,6 @@ module.exports = function(app) {
       state: req.state,
       cards: req.home,
       slug: req.slug,
-      post: req.post,
       comments: req.comments
     });
   }

@@ -4,15 +4,15 @@
 <div class="container">
     <h1 id="hi">Hi {{ firstName }} <i class="fas fa-bell" id="bell" data-toggle="popover" title="Notifications"
             data-content="
-            {{#each post}}
-            {{#each Comments}}
-            {{#ifCond this.user ../this.user}}
+            {{#each comments}}
+            {{#unless seen}}
+            {{#ifCond this.poster ./username}}
             {{else}}
-            <div><a href=/users/{{this.user}}> {{this.user}}</a> replied to your post <a href=/forum/post/{{../this.id}}>{{../this.title}}</a></div>
+            <div class='notify'><a href=/users/{{this.commenter}}> {{this.commenter}}</a> replied to your post <a href=/forum/post/{{this.PostId}}>{{this.title}}</a> {{ prettifyDate this.createdAt }}<i class='fas fa-times-circle' id='{{this.id}}'></i></div>
             {{/ifCond}}
+            {{/unless}}
             {{/each}}
-            {{/each}}
-    " data-html="true"></i>
+            " data-html="true"></i>
     </h1>
     <div class="grid-container">
         <a href="/myaccount">
@@ -58,8 +58,4 @@
 </div>
 <br><br><br><br>
 
-<script>
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    });
-</script>
+<script src="/js/index.js"></script>

@@ -16,8 +16,9 @@
         <div class="post-card-header">
             <div class="row">
                 <div class="col-10">
-                    <div>Posted by <a href="/users/{{post.user}}" target="_blank">{{ post.user }}</a> |
-                        {{ post.city }}</div>
+                    <div>Posted by <a href="/users/{{post.user}}" target="_blank">{{ post.user }}
+                        </a>{{ prettifyDate post.createdAt }} | {{ post.city }}
+                    </div>
                     <h5>{{ post.title }}</h5>
                 </div>
             </div>
@@ -27,7 +28,7 @@
             <h5>Comments:</h5>
             {{#each post.Comments }}
             <hr>
-            <div><a href="/users/{{ this.user }}" target="_blank">{{this.user}}:</a> {{ this.body}}</div>
+            <div><a href="/users/{{ this.commenter }}" target="_blank">{{this.commenter}}:</a> {{ this.body}}</div>
             {{/each }}
             <hr>
         </div>
@@ -37,8 +38,9 @@
 {{> comment }}
 
 <script>
-    var username = "{{ userdata.username }}";
+    var commenter = "{{ userdata.username }}";
     var postId = "{{ post.id }}";
     var title = "{{ post.title }}";
+    var poster = "{{ post.user }}"; 
 </script>
 <script src="/js/postComments.js"></script>

@@ -14,10 +14,20 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false,
         len: [1]
       },
-      user: {
+      commenter: {
         type: DataTypes.STRING,
         allowNull: false,
         len: [1]
+      },
+      poster: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        len: [1]
+      },
+      seen: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: 0
       }
     },
     {

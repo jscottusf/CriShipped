@@ -43,7 +43,8 @@ var handleFormSubmit = function(event) {
   var comment = {
     title: title,
     body: commentBody.val().trim(),
-    user: username,
+    commenter: commenter,
+    poster: poster,
     PostId: postId
   };
 

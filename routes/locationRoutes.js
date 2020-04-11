@@ -54,16 +54,26 @@ module.exports = function(app) {
     var options = {
       method: "GET",
       url: mapboxUrl,
-      headers: {},
+      headers: {}
     };
     request(options, function(error, response) {
       if (error) throw new Error(error);
       var data = JSON.parse(response.body);
-      req.latitude = data.features[0].center[1];
-      req.longitude = data.features[0].center[0];
-      console.log(data.features[0].place_name);
-      console.log(req.latitude + " " + req.longitude);
-      next();
+      //console.log(data);
+      if (data.features.length > 0) {
+        req.latitude = data.features[0].center[1];
+        req.longitude = data.features[0].center[0];
+        console.log(data.features[0].place_name);
+        console.log(req.latitude + " " + req.longitude);
+        next();
+        //if user enters some nonsense, default to Portland, Oregon
+      } else {
+        req.latitude = 45.5051;
+        req.longitude = -122.675;
+        req.location.city = "Portland";
+        req.location.state = "Oregon";
+        next();
+      }
     });
   }
 
@@ -100,7 +110,7 @@ module.exports = function(app) {
     var options = {
       method: "GET",
       url: "https://corona.lmao.ninja/all",
-      headers: {},
+      headers: {}
     };
     request(options, function(error, response) {
       if (error) throw new Error(error);
