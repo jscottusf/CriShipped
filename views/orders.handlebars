@@ -11,8 +11,9 @@
     </p>
     {{> messages}}
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8 requests-col">
             <h5>unsubmitted requests</h5>
+            <hr>
             <div class="order-request">
                 {{#each dbOrder}}
                 {{#unless order_status}}
@@ -22,11 +23,12 @@
                 {{/each}}
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 order-col">
             <div class="order">
                 <h5 data-toggle="collapse" data-target="#collapseExample" aria-expanded="true">
                     request history <span id="add">+</span>
                 </h5>
+                <hr>
                 <div class="collapse" id="collapseExample">
                     <div>
                         {{#each dbOrder}}
@@ -48,8 +50,6 @@
                         {{/if}}
                         {{/if}}
                         {{/each}}
-
-
                     </div>
                 </div>
             </div>

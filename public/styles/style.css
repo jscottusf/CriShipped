@@ -447,6 +447,10 @@ dl.faq button[aria-expanded="true"]::before {
 }
 
 /* Order Requests */
+.order-col {
+  padding: 20;
+  margin-top: 0;
+}
 
 .order,
 .ordered {
@@ -474,6 +478,10 @@ dl.faq button[aria-expanded="true"]::before {
 .ordered,
 .order-request {
   font-weight: 600;
+}
+
+.order h5:hover {
+  padding: 0 0 0 1;
 }
 
 .request {
