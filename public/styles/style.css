@@ -481,7 +481,7 @@ dl.faq button[aria-expanded="true"]::before {
 }
 
 .order h5:hover {
-  padding: 0 0 0 1;
+  padding: 0 0 0 1px;
 }
 
 .request {
