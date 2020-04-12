@@ -1,0 +1,60 @@
+{{> style}}
+{{>nav}}
+
+<div class="posts-container">
+
+    <h2>Crishipped Order Requests</h2>
+    <p>
+        This mission of Crishipped is to connect people with limited resouces during times of crisis.
+        Because of this, we prioritize orders from health care providers and first responders. We cannot guarantee
+        approval of all order requests. We will only charge you for approved requests.
+    </p>
+    {{> messages}}
+    <div class="row">
+        <div class="col-lg-8">
+            <h5>unsubmitted requests</h5>
+            <div class="order-request">
+                {{#each dbOrder}}
+                {{#unless order_status}}
+                <p>{{this.product_name}} @ ${{this.product_price}} <button data-id="{{this.id}}"
+                        class=" btn btn-sm btn-outline-dark request">submit+</button></p>
+                {{/unless}}
+                {{/each}}
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="order">
+                <h5 data-toggle="collapse" data-target="#collapseExample" aria-expanded="true">
+                    request history <span id="add">+</span>
+                </h5>
+                <div class="collapse" id="collapseExample">
+                    <div>
+                        {{#each dbOrder}}
+                        {{#if order_status}}
+                        {{#unless order_approved}}
+                        <p>
+                            {{this.product_name}} <span id="status">...pending</span>
+                        </p>
+                        {{/unless}}
+                        {{/if}}
+                        {{/each}}
+
+                        {{#each dbOrder}}
+                        {{#if order_status}}
+                        {{#if order_approved}}
+                        <p>
+                            {{this.product_name}} <span id="status">approved</span>
+                        </p>
+                        {{/if}}
+                        {{/if}}
+                        {{/each}}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/orders.js"></script>

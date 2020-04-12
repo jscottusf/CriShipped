@@ -7,7 +7,7 @@ var postLocation = $("#category");
 usercity = usercity
   .toLowerCase()
   .split(" ")
-  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+  .map(s => s.charAt(0).toUpperCase() + s.substring(1))
   .join(" ");
 
 // The API object contains methods for each kind of request we'll make
@@ -15,35 +15,35 @@ var API = {
   saveExample: function(post) {
     return $.ajax({
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/posts",
-      data: JSON.stringify(post),
+      data: JSON.stringify(post)
     });
   },
   editExample: function(post) {
     return $.ajax({
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       type: "PUT",
       url: "api/posts/",
-      data: JSON.stringify(post),
+      data: JSON.stringify(post)
     });
   },
   getExamples: function() {
     return $.ajax({
       url: "api/examples",
-      type: "GET",
+      type: "GET"
     });
   },
   deleteExample: function(id) {
     return $.ajax({
       url: "api/posts/" + id,
-      type: "DELETE",
+      type: "DELETE"
     });
-  },
+  }
 };
 
 var handleFormSubmit = function(event) {
@@ -51,9 +51,9 @@ var handleFormSubmit = function(event) {
 
   var post = {
     title: postTitle.val().trim(),
-    body: postBody.val().trim(),
+    body: postBody.val(),
     user: username,
-    city: usercity,
+    city: usercity
   };
 
   if (!(post.title && post.body)) {
