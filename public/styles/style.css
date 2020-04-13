@@ -370,7 +370,7 @@ dl.faq button[aria-expanded="true"]::before {
   background-color: #353b40;
 }
 
-.post-card-header h5 {
+.post-card-header h2 {
   padding: 0;
   margin: 0;
 }
@@ -444,4 +444,58 @@ dl.faq button[aria-expanded="true"]::before {
 .fa-times-circle:hover {
   transition: 0.25s;
   font-size: 15px;
+}
+
+/* Order Requests */
+.order-col {
+  padding: 20;
+  margin-top: 0;
+}
+
+.order,
+.ordered {
+  width: auto;
+  border-radius: 15px;
+  background-color: white;
+  padding: 0px;
+}
+
+.order h5,
+.ordered h5 {
+  color: #353b40;
+}
+
+.order h5:hover,
+.ordered h5:hover {
+  cursor: pointer;
+}
+
+.order-request p {
+  color: rgb(63, 61, 61);
+}
+
+.order p,
+.ordered,
+.order-request {
+  font-weight: 600;
+}
+
+.order h5:hover {
+  padding: 0 0 0 1px;
+}
+
+.request {
+  border-radius: 50px;
+}
+
+.request {
+  float: right;
+}
+
+#add {
+  float: right;
+}
+
+#status {
+  float: right;
 }

@@ -140,7 +140,7 @@ module.exports = function(app) {
     } else {
       res.json(err);
       req.flash("error", "You can't delete other people's posts");
-      res.redirect("/forum");
+      res.end();
     }
   }
 

@@ -46,6 +46,7 @@ require("./routes/locationRoutes")(app);
 require("./routes/catalogueRoutes")(app);
 require("./routes/forumRoutes")(app);
 require("./routes/commentRoutes")(app);
+require("./routes/orderRoutes")(app);
 require("./routes/profileRoutes")(app);
 
 var syncOptions = { force: false };
